@@ -1,5 +1,8 @@
 # Validate-20022
 
+
+## WORK INCOMPLETE! SNAPSHOT BACKUP ONLY!!
+
 An environment with which to validate XML documents against a couple of ISO-20022 XSD schemas:
 
 - `remt.001.001.05.xsd`
@@ -25,11 +28,11 @@ To validate a test document of one’s own that is found in your local computer 
 - Windows DOS prompt:
   - `validate.bat  20022-type-string  20022-xml-file`
 for example from the test.bat demonstration:
-validate.bat  remt.001.001.05 remt.001.001.05-test-good.xml
+`validate.bat  remt.001.001.05 remt.001.001.05-test-good.xml`
   - Shell:
   - `sh validate.sh  20022-type-string  20022-xml-file`
 for example from the test.sh demonstration:
-sh validate.sh remt.001.001.05 remt.001.001.05-test-good.xml
+`sh validate.sh remt.001.001.05 remt.001.001.05-test-good.xml`
 
 When there is a schema error of any kind, the script creates a file named by adding the “.error.txt” suffix to the input file name and records the error information in that file.
 
