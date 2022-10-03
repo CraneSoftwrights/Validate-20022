@@ -50,12 +50,8 @@
   
   <mkdir dir="${dir}/xsl"/>
   <antcall target="-sch2xsl">
-    <param name="schin" value="sch/remt.001.001.05.rules.sch"/>
-    <param name="xslout" value="${dir}/xsl/remt.001.001.05.rules.xsl"/>
-  </antcall>
-  <antcall target="-sch2xsl">
-    <param name="schin" value="sch/remt.002.001.02.rules.sch"/>
-    <param name="xslout" value="${dir}/xsl/remt.002.001.02.rules.xsl"/>
+    <param name="schin" value="sch/all-iso-20022.rules.sch"/>
+    <param name="xslout" value="${dir}/xsl/all-iso-20022.rules.xsl"/>
   </antcall>
 
   <!--copy directories-->

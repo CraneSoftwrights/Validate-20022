@@ -1,2 +1,2 @@
 @echo off
-java -jar "%~dp0xjparse.jar" -c %~dp0catalog.xml -S "%~1" "%~2"
+java -jar "%~dp0xjparse.jar" -S "%~1" "%~2"
