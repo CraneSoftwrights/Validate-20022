@@ -12,7 +12,6 @@
   <echo message="utilitydir=${utilitydir}"/>
   <echo message="thisdir=${thisdir}"/>
   <echo message="dateTime=${dateTime}"/>
-  <echo message="ssGoogle=${ssGoogle}"/>
   <tstamp>
     <format property="wgettime" pattern="yyyy-MM-dd HH:mm:ss"/>
   </tstamp>

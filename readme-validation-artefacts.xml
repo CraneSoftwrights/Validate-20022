@@ -50,6 +50,9 @@
       <listitem>
         <para><literal>windows-drag-n-drop/*.bat</literal> - Windows-based invocations using drag-n-drop functionality supporting dropping the XML file to be validated onto the batch file in Windows Explorer</para>
       </listitem>
+      <listitem>
+        <para><literal>testall.*</literal> - invocations for each of the files in the <literal>xml/</literal> subdirectory</para>
+      </listitem>
     </itemizedlist>
   </section>
   <section id="S-JAVA">
@@ -181,8 +184,8 @@ sh testall.sh</programlisting></para></listitem></itemizedlist></listitem></item
         <para>Windows DOS prompt:</para>
         <itemizedlist>
           <listitem>
-            <para><programlisting>validate.bat xml-file</programlisting>for example from the <literal>test.bat</literal> demonstration:</para>
-            <programlisting>validate.bat test.xml</programlisting>
+            <para><programlisting>validate-20022.bat xml-file</programlisting>for example from the <literal>test.bat</literal> demonstration:</para>
+            <programlisting>validate-20022.bat test.xml</programlisting>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -190,8 +193,8 @@ sh testall.sh</programlisting></para></listitem></itemizedlist></listitem></item
         <para>Shell:</para>
         <itemizedlist>
           <listitem>
-            <para><programlisting>sh validate.sh xml-file</programlisting>for example from the <literal>test.sh</literal> demonstration:</para>
-            <programlisting>sh validate.sh test.xml</programlisting>
+            <para><programlisting>sh validate-20022.sh xml-file</programlisting>for example from the <literal>test.sh</literal> demonstration:</para>
+            <programlisting>sh validate-20022.sh test.xml</programlisting>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -199,11 +202,11 @@ sh testall.sh</programlisting></para></listitem></itemizedlist></listitem></item
     <para>When there is an error of any kind, the script creates a file named by adding the “<literal>.error.txt</literal>” suffix to the input file name and records the error information in that file.</para>
     <para>When there is a data integrity error, the script also creates a file named by adding the “<literal>.svrl.xml</literal>” suffix to the input file name and records the Schematron SVRL record information in that file.</para>
     <para>For example, if one has a test file for customization ‘core’ named <literal>myISO20022Test.xml</literal> in the <literal>val\</literal> directory then in Windows one would use:</para>
-    <para><programlisting>validate.bat myISO20022Test.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
-    <programlisting>Validate-20022-20221003-1440z\val\validate.bat Core CreditNote myISO20022Test.xml</programlisting>
+    <para><programlisting>validate-20022.bat myISO20022Test.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
+    <programlisting>Validate-20022-20221003-1440z\val\validate-20022.bat myISO20022Test.xml</programlisting>
     <para>And if one is using Shell in the <literal>val/</literal> directory one would use:</para>
-    <para><programlisting>sh validate.sh myISO20022Test.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
-    <programlisting>sh Validate-20022-20221003-1440z/val/validate.sh myISO20022Test.xml</programlisting>
+    <para><programlisting>sh validate-20022.sh myISO20022Test.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
+    <programlisting>sh Validate-20022-20221003-1440z/val/validate-20022.sh myISO20022Test.xml</programlisting>
   </section>
   <!--<section id="S-EXAMPLES"><title>Examples</title><para>The <literal>examples/</literal> subdirectory has a number of example BPC UBL XML instances. The <literal>val/test-examples.bat</literal> and <literal>val/test-examples.sh</literal> invocations check each of these examples. In Windows Explorer, double-click on <literal>test-examples.bat</literal> to execute the program in a pop-up window (the batch file will pause at the end). Note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them (see <xref linkend="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY"/> for details on increasing the length of the history).</para></section>-->
   <section id="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY">
