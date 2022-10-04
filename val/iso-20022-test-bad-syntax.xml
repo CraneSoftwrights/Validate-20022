@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:remt.001.001.05">
+  <RmtAdvc>
+    <GrpHdr>
+      <MsgId>20221001Example1</MsgId
+      <CreDtTm>2022-10-01T00:00:00</CreDtTm>
+      <InitgPty>
+        <Id>
+          <OrgId>
+            <Othr>
+              <Id>123456</Id>
+              <SchmeNm>
+                <Prtry>Exchange Framework</Prtry>
+              </SchmeNm>
+            </Othr>
+          </OrgId>
+        </Id>
+      </InitgPty>
+      <MsgRcpt>
+        <Id>
+          <OrgId>
+            <Othr>
+              <Id>654321</Id>
+              <SchmeNm>
+                <Prtry>Exchange Framework</Prtry>
+              </SchmeNm>
+            </Othr>
+          </OrgId>
+        </Id>
+      </MsgRcpt>
+    </GrpHdr>
+    <RmtInf>
+      <RmtId>Linking ID Example 1</RmtId>
+      <Strd>
+        <RfrdDocInf>
+          <Tp>
+            <CdOrPrtry>
+              <Cd>CINV</Cd>
+            </CdOrPrtry>
+          </Tp>
+          <Nb>683528</Nb>
+          <RltdDt>2021-04-10</RltdDt>
+        </RfrdDocInf>
+        <RfrdDocAmt>
+          <DuePyblAmt Ccy="USD">4129.27</DuePyblAmt>
+          <RmtdAmt Ccy="USD">4129.27</RmtdAmt>
+        </RfrdDocAmt>
+      </Strd>
+      <Strd>
+        <RfrdDocInf>
+          <Tp>
+            <CdOrPrtry>
+              <Cd>CINV</Cd>
+            </CdOrPrtry>
+          </Tp>
+          <Nb>683529</Nb>
+          <RltdDt>2021-04-10</RltdDt>
+        </RfrdDocInf>
+        <RfrdDocAmt>
+          <DuePyblAmt Ccy="USD">3716.34</DuePyblAmt>
+          <RmtdAmt Ccy="USD">3716.34</RmtdAmt>
+        </RfrdDocAmt>
+      </Strd>
+      <OrgnlPmtInf>
+        <Refs>
+          <EndToEndId>Linking ID Example 1</EndToEndId>
+        </Refs>
+        <Amt>
+          <InstdAmt Ccy="USD">7845.61</InstdAmt>
+        </Amt>
+        <Dbtr>
+          <Nm>Payer Test1</Nm>
+        </Dbtr>
+        <Cdtr>
+          <Nm>Payee Test1</Nm>
+        </Cdtr>
+      </OrgnlPmtInf>
+    </RmtInf>
+  </RmtAdvc>
+</Document>

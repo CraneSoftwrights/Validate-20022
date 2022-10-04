@@ -35,16 +35,16 @@
     <param name="target" value="${dir}/readme-validation-artefacts.html"/>
   </antcall>
 
-  <uptodate targetfile="${dir}/readme-testSVRL4errors.html"
-            property="readme-testSVRL4errors-okay">
+  <uptodate targetfile="${dir}/readme-testSVRL4ISO20022errors.html"
+            property="readme-testSVRL4ISO20022errors-okay">
     <srcfiles dir=".">
-      <include name="testSVRL4errors.xsl"/>
+      <include name="testSVRL4ISO20022errors.xsl"/>
     </srcfiles>
   </uptodate>
   <antcall target="-make-doc">
-    <param name="okay"   value="readme-testSVRL4errors-okay"/>
-    <param name="source" value="testSVRL4errors.xsl"/>
-    <param name="target" value="${dir}/readme-testSVRL4errors.html"/>
+    <param name="okay"   value="readme-testSVRL4ISO20022errors-okay"/>
+    <param name="source" value="testSVRL4ISO20022errors.xsl"/>
+    <param name="target" value="${dir}/readme-testSVRL4ISO20022errors.html"/>
   </antcall>
   
   <mkdir dir="${dir}/xsl"/>
@@ -89,8 +89,8 @@
   <copy preservelastmodified="true"
         todir="${dir}/Validate-20022-${dateTime}/val">
     <fileset dir="${dir}">
-      <include name="testSVRL4errors.xsl"/>
-      <include name="readme-testSVRL4errors.html"/>
+      <include name="testSVRL4ISO20022errors.xsl"/>
+      <include name="readme-testSVRL4ISO20022errors.html"/>
     </fileset>
   </copy>
   <copy preservelastmodified="true"

@@ -31,7 +31,7 @@ set errorRet=%errorlevel%
 if %errorRet% neq 0 goto :error
 del "%~1.error.txt"
 
-call "%~dp0xslt.bat" "%~1.svrl.xml" "%~dp0testSVRL4errors.xsl" nul 2>"%~1.error.txt"
+call "%~dp0xslt.bat" "%~1.svrl.xml" "%~dp0testSVRL4ISO20022errors.xsl" nul 2>"%~1.error.txt"
 set errorRet=%errorlevel%
 if %errorRet% neq 0 goto :error
 

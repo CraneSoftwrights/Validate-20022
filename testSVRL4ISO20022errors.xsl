@@ -6,12 +6,12 @@
                 exclude-result-prefixes="xs svrl"
                 version="2.0">
 
-<xs:doc filename="testSVRL4UBLerrors.xsl" vocabulary="DocBook"
-        info="20200921-2030z">
-  <xs:title>Testing SVRL for any UBL-related errors</xs:title>
+<xs:doc filename="testSVRL4ISO20022errors.xsl" vocabulary="DocBook"
+        info="20221004-1000z">
+  <xs:title>Testing SVRL for any errors</xs:title>
   <para>
     Test the output of Schematron transformation for any errors while at
-    the same time translating the location contexts for UBL namespace prefixes.
+    the same time translating the location contexts for ISO 20022 namespaces.
   </para>
   <para>
     This returns a non-zero exit code when the input SVRL xml file contains
@@ -20,9 +20,9 @@
           <ulink url="http://standards.iso.org/ittf/PubliclyAvailableStandards">http://standards.iso.org/ittf/PubliclyAvailableStandards</ulink> 19757-3)
   </para>
   <para>
-    The location contexts are massaged when UBL namespaces are recognized so
-    that the end result uses familiar cac:, cbc:, and ext: prefixes, and no
-    prefix nor predicate on the document element.
+    The location contexts are massaged when ISO 20022 namespaces are recognized
+    so that the message is made more clear. Other namespaces are kept in clear
+    text.
   </para>
   <para>
     Standard output can be ignored as all messages are sent to standard error.
@@ -30,8 +30,7 @@
   <para>
     Any given error reports the ordinal number, followed by the message,
     followed by the XPath context, followed by " / ", followed by the
-    XPath test, followed by the semantics spreadsheet reference. 
-    The XPath context can be found in the input document. The
+    XPath test. The XPath context can be found in the input document. The
     XPath test location may or may not be found in the input document. 
   </para>
 </xs:doc>
@@ -67,26 +66,20 @@
   <xsl:if test="$failures">
     <!--report all of the errors-->
     <xsl:for-each select="$failures">
-      <!--massage the location based on knowledge of UBL namespaces-->
+      <!--massage the location based on knowledge of ISO 20022 namespaces-->
       <xsl:variable name="location" select="
 replace(@location,'@Q\{.*?\}','@')"/>
       <xsl:variable name="location" select="
-replace($location,'Q\{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2\}','cac:$1')"/>
+replace($location,'Q\{urn:iso:std:iso:20022:tech:xsd:.*?\}','$1')"/>
+      <!--massage location to remove the predicate on the document element-->
       <xsl:variable name="location" select="
-replace($location,'Q\{urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2\}','cbc:$1')"/>
-      <xsl:variable name="location" select="
-replace($location,'Q\{urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2\}','ext:$1')"/>
-      <xsl:variable name="location" select="
-replace($location,'Q\{urn:oasis:names:specification:ubl:schema:xsd:[^-]+-2\}([^\[]+)\[1\]','$1')"/>
+replace($location,'^(/.+?)\[1\]','$1')"/>
       <!--compose message-->
       <xsl:variable name="message">
         <xsl:value-of select="position()"/>
         <xsl:text>. </xsl:text>
-        <xsl:value-of select="replace( 
-                                  (:remove spreadsheet info from context:)
-                                  replace( svrl:text, '\(:.*?:\)', '' ),
-                                  (:ensure a single space at end of message:)
-                                  '(.)\s*$','$1 ')"/>
+        <!--ensure only a single space follows the string-->
+        <xsl:value-of select="replace( svrl:text, '(.)\s*$', '$1 ' )"/>
         <xsl:value-of select="$location"/>
         <xsl:text> / </xsl:text>
         <xsl:value-of select="@test"/>
@@ -99,12 +92,11 @@ replace($location,'Q\{urn:oasis:names:specification:ubl:schema:xsd:[^-]+-2\}([^\
   </xsl:if>
   
   <xsl:variable name="internals"
-                select="distinct-values(//svrl:suppressed-rule/@context)
-                        [contains(.,'(:')]"/>
+                select="distinct-values(//svrl:suppressed-rule/@context)"/>
   <xsl:if test="exists($internals)">
     <!--report all of the internal errors, but only once for each-->
     <xsl:for-each-group group-by="@context"
-                      select="//svrl:suppressed-rule[contains(@context,'(:')]">
+                        select="//svrl:suppressed-rule">
       <xsl:variable name="message">
         <xsl:value-of select="'INTERNAL ERROR',position()"/>
         <xsl:text>. Suppressed rule: "</xsl:text>

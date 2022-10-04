@@ -36,7 +36,7 @@ errorRet=$?
 
 if [ $errorRet -eq 0 ]
 then
-sh "$DP0/xslt.sh" "$1.svrl.xml" "$DP0/testSVRL4errors.xsl" /dev/null 2>"$1.error.txt"
+sh "$DP0/xslt.sh" "$1.svrl.xml" "$DP0/testSVRL4ISO20022errors.xsl" /dev/null 2>"$1.error.txt"
 errorRet=$?
 
 if [ $errorRet -eq 0 ]
@@ -51,7 +51,7 @@ fi #end of check of raw SVRL
 
 else
 
-echo ===== Phase 2 not executed (missing XSLT created from Schematron) =====
+echo ===== Phase 2 not executed \(missing XSLT created from Schematron\) =====
 
 fi
 

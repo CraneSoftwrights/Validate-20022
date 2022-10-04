@@ -67,21 +67,80 @@ where options include:
 <emphasis>...followed by many lines...</emphasis></programlisting>
     <para>If the command cannot be found, an error message will be displayed.</para>
   </section>
-  <!--<section id="S-DEMONSTRATION-EXECUTION"><title>Demonstration execution</title><para>A running Java-based demonstration of the two-phase ingestion of a BPC XML document is in the <literal>val/</literal> subdirectory. </para><para>There are four illustrative XML instances being validated:</para><itemizedlist><listitem><para><literal>Invoice-test-bad-syntax.xml</literal> - a document with an XML syntax error on line 9</para><itemizedlist><listitem><para>the end delimiter of the closing tag for the <literal>cbc:ID</literal> element is missing</para></listitem></itemizedlist></listitem><listitem><para><literal>Invoice-test-bad-model.xml</literal> - a document with a UBL model error on line 9</para><itemizedlist><listitem><para>the <literal>cbc:ID</literal> element is misspelled as <literal>cbc:IDxxxxx</literal></para></listitem></itemizedlist></listitem><listitem><para><literal>Invoice-test-bad-data.xml</literal> - a document with one BPC data integrity for customization ‘core’ and two BPC data integrity errors for customization ‘extended’:</para><itemizedlist><listitem><para>the first error is a UBL error violating the rule that all elements must have some content, either text or other elements (but not both), and never can be empty</para></listitem><listitem><para>the second error is a BPC error violating the rule that a party’s name cannot be absent nor is there allowed to be more than one name for a party</para></listitem></itemizedlist></listitem><listitem><para><literal>Invoice-test-good.xml</literal> - a valid UBL document without violating BPC data integrity constraints</para></listitem></itemizedlist><para>To run the demonstration there is an invocation for each of the Windows and Shell environments:</para><itemizedlist><listitem><para>Windows command line:</para><itemizedlist><listitem><para><programlisting>cd val\
-test.bat</programlisting></para></listitem></itemizedlist></listitem><listitem><para>Windows explorer:</para><itemizedlist><listitem><para>double-click on <literal>test.bat</literal> to execute the program in a pop-up window (the batch file will pause at the end)</para></listitem><listitem><para>note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them (see <xref linkend="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY"/> for details on increasing the length of the history)</para></listitem></itemizedlist></listitem><listitem><para>Shell:</para><itemizedlist><listitem><para><programlisting>cd val/
-sh test.sh</programlisting></para></listitem></itemizedlist></listitem></itemizedlist><para>The following is a transcript of the output of running the demonstration:</para><programlisting>############################################################
-Validating using customization "Core" and type "Invoice": "Invoice-Core-test-bad-syntax.xml"
+  <section id="S-DEMONSTRATION-EXECUTION">
+    <title>Demonstration execution</title>
+    <para>A running Java-based demonstration of the two-phase ingestion of an ISO 20022 XML document is in the <literal>val/</literal> subdirectory. </para>
+    <para>There are four illustrative XML instances being validated:</para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>iso-20022-test-bad-syntax.xml</literal> - a document with an XML syntax error on line 9</para>
+        <itemizedlist>
+          <listitem>
+            <para>the end delimiter of the closing tag for the <literal>MsgId</literal> element is missing</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para><literal>iso-20022-test-bad-model.xml</literal> - a document with a UBL model error on line 9</para>
+        <itemizedlist>
+          <listitem>
+            <para>the expected date and time element contains only a date value</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para><literal>iso-20022-test-good.xml</literal> - a valid document without violating Schematron data integrity constraints</para>
+      </listitem>
+    </itemizedlist>
+    <para>To run the demonstration there is an invocation for each of the Windows and Shell environments:</para>
+    <itemizedlist>
+      <listitem>
+        <para>Windows command line:</para>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <programlisting>cd val\
+test.bat</programlisting>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>Windows explorer:</para>
+        <itemizedlist>
+          <listitem>
+            <para>double-click on <literal>test.bat</literal> to execute the program in a pop-up window (the batch file will pause at the end)</para>
+          </listitem>
+          <listitem>
+            <para>note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them (see <xref linkend="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY"/> for details on increasing the length of the history)</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>Shell:</para>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <programlisting>cd val/
+sh test.sh</programlisting>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+    <para>The following is a transcript of the output of running the demonstration:</para>
+    <programlisting>############################################################
+Validating "iso-20022-test-bad-syntax.xml"
 ############################################################
 ===== Phase 1: XSD schema validation =====
-org.xml.sax.SAXParseException; systemId: file:///Users/admin/u/git/bpc/
- bpc-semantics-spreadsheet-tools/results/bpc-semantics-tools-0.3-test/
- bpc-semantics-0.3-test/val/Invoice-Core-test-bad-syntax.xml;
- lineNumber: 10; columnNumber: 2; The end-tag for element type "cbc:ID"
- must end with a '>' delimiter.
+org.xml.sax.SAXParseException; systemId: file:///Users/admin/u/git/Validate-20022/
+ results/Validate-20022-tools-test/Validate-20022-test/val/iso-20022-test-bad-syntax.xml;
+ lineNumber: 6; columnNumber: 7; The end-tag for element type "MsgId" must end with
+ a '>' delimiter.
 	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
 	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
 	at org.apache.xerces.jaxp.SAXParserImpl.parse(Unknown Source)
-	at javax.xml.parsers.SAXParser.parse(SAXParser.java:274)
+	at java.xml/javax.xml.parsers.SAXParser.parse(SAXParser.java:276)
 	at com.nwalsh.parsers.XJParser.xsdParse(Unknown Source)
 	at com.nwalsh.parsers.XJParser.parse(Unknown Source)
 	at com.nwalsh.parsers.XJParse.run(Unknown Source)
@@ -91,58 +150,73 @@ Exception in thread "main" java.lang.NullPointerException
 	at com.nwalsh.parsers.XJParse.run(Unknown Source)
 	at com.nwalsh.parsers.XJParse.main(Unknown Source)
 Attempting well-formed, namespace-aware parse
-Fatal error:file:///Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/
- bpc-semantics-tools-0.3-test/bpc-semantics-0.3-test/val/
- Invoice-Core-test-bad-syntax.xml:10:2:The end-tag for element type "cbc:ID"
- must end with a '>' delimiter.
+Fatal error:file:///Users/admin/u/git/Validate-20022/results/Validate-20022-tools-test/
+ Validate-20022-test/val/iso-20022-test-bad-syntax.xml:6:7:The end-tag for element
+ type "MsgId" must end with a '>' delimiter.
 
 ############################################################
-Validating using customization "Core" and type "Invoice": "Invoice-Core-test-bad-model.xml"
+Validating "iso-20022-test-bad-model.xml"
 ############################################################
 ===== Phase 1: XSD schema validation =====
 Attempting well-formed, namespace-aware parse
-Error:file:///Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/
- bpc-semantics-tools-0.3-test/bpc-semantics-0.3-test/val/
- Invoice-Core-test-bad-model.xml:9:16:cvc-complex-type.2.4.a: Invalid content
- was found starting with element 'cbc:IDxxxxx'. One of
- '{"urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2":ID}' is expected.
-Parse succeeded (0.9) with 1 error and no warnings.
+Error:file:///Users/admin/u/git/Validate-20022/results/Validate-20022-tools-test/
+ Validate-20022-test/val/iso-20022-test-bad-model.xml:6:36:cvc-datatype-valid.1.2.1:
+ '2022-10-01' is not a valid value for 'dateTime'.
+Error:file:///Users/admin/u/git/Validate-20022/results/Validate-20022-tools-test/
+ Validate-20022-test/val/iso-20022-test-bad-model.xml:6:36:cvc-type.3.1.3:
+ The value '2022-10-01' of element 'CreDtTm' is not valid.
+Parse succeeded (0.11) with 2 errors and no warnings.
 
 ############################################################
-Validating using customization "Core" and type "Invoice": "Invoice-Core-test-bad-data.xml"
-############################################################
-===== Phase 1: XSD schema validation =====
-No schema validation errors.
-===== Phase 2: BPC customization "Core" data integrity validation =====
-1. [IND5] Elements SHALL NOT be empty /Invoice/cac:AccountingCustomerParty[1]/
- cac:Party[1]/cac:PostalAddress[1]/cbc:PostalZone[1] / true()
-2. Fewer or more than one trading name. /Invoice/cac:AccountingCustomerParty[1] /
- count(cac:Party/cac:PartyName/cbc:Name) = 1 (:NABT-045 Row 105 Tab
- 'Invoice, Credit Note':)
-Count of data errors: 2
-
-
-The following error report is simply the exit mechanism and can be ignored:
-Error in xsl:message/@terminate on line 120 column 34 of testSVRL4UBLerrors.xsl:
-  XTMM9000: Processing terminated by xsl:message at line 120 in testSVRL4UBLerrors.xsl
-Processing terminated by xsl:message at line 120 in testSVRL4UBLerrors.xsl
-
-############################################################
-Validating using customization "Core" and type "Invoice": "Invoice-Core-test-good.xml"
+Validating "iso-20022-test-good.xml"
 ############################################################
 ===== Phase 1: XSD schema validation =====
 No schema validation errors.
-===== Phase 2: BPC customization "Core" data integrity validation =====
-No data integrity validation errors.</programlisting><para>Also included is a script to run all of the document types in both of the customizations for both “good” and “bad” test files:</para><itemizedlist><listitem><para>Windows command line:</para><itemizedlist><listitem><para><programlisting>cd val\
-testall.bat</programlisting></para></listitem></itemizedlist></listitem><listitem><para>Windows explorer:</para><itemizedlist><listitem><para>double-click on <literal>testall.bat</literal> to execute the program in a pop-up window (the batch file will pause at the end)</para></listitem><listitem><para>note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them (see <xref linkend="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY"/> for details on increasing the length of the history)</para></listitem></itemizedlist></listitem><listitem><para>Shell:</para><itemizedlist><listitem><para><programlisting>cd val/
-sh testall.sh</programlisting></para></listitem></itemizedlist></listitem></itemizedlist></section>-->
-  <!--<section id="S-DATA-ERRORS-AND-INTERNAL-ERRORS"><title>Data errors and internal errors</title><para>There are two kinds of data error reports emitted and one kind of internal error report emitted.</para><para>A UBL data constraint error report begins with a square-bracketed UBL conformance rule reference such as the following:</para><programlisting>1. [IND5] Elements SHALL NOT be empty /Invoice/cac:AccountingCustomerParty[1]/
- cac:Party[1]/cac:PostalAddress[1]/cbc:PostalZone[1] / true()</programlisting><para>A BPC data integrity constraint error includes references into the spreadsheet where more information may be found regarding the problem. In this example, the user would refer to the North American Business Term (NABT) numbered 45 that is found on row 105 in the worksheet tab “Invoice, Credit Note” of the BPC Semantic Model spreadsheet:</para><programlisting>2. Fewer or more than one trading name. /Invoice/cac:AccountingCustomerParty[1]
- / count(cac:Party/cac:PartyName/cbc:Name) = 1 (:NABT-045 Row 105 Tab
- 'Invoice, Credit Note':)</programlisting><para>Internal errors are of particular importance to the BPC Semantic technical subgroup, as these reflect previously-undetected errors or improvements in the spreadsheet that should be repaired readily. Without the repair, the Schematron rule for the identified semantic component is not being performed, and so there is no confidence that the suppressed rule is or is not being violated.</para><programlisting>INTERNAL ERROR 1. Suppressed rule: "cac:TaxCategory (:NABT-118 NABT-927
- Row 200 251 Tab 'Invoice, Credit Note':)" shadowed by rule:
- "/Invoice:Invoice/cac:AllowanceCharge/cac:TaxCategory
- (:NABT-095 NABT-096 NABT-102 Row 164 165 174 Tab 'Invoice, Credit Note':)"</programlisting><para>Please consider taking the time to forward to the BPC Semantic technical subgroup an anonymized version of the XML document that triggers the internal errors as this will assist the team in repairing/improving the semantic spreadsheet faults.</para></section>-->
+===== Phase 2: Data integrity validation =====
+No data integrity validation errors.</programlisting>
+    <para>Also included is a script to run all of the document types in both of the customizations for both “good” and “bad” test files:</para>
+    <itemizedlist>
+      <listitem>
+        <para>Windows command line:</para>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <programlisting>cd val\
+testall.bat</programlisting>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>Windows explorer:</para>
+        <itemizedlist>
+          <listitem>
+            <para>double-click on <literal>testall.bat</literal> to execute the program in a pop-up window (the batch file will pause at the end)</para>
+          </listitem>
+          <listitem>
+            <para>note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them (see <xref linkend="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY"/> for details on increasing the length of the history)</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>Shell:</para>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <programlisting>cd val/
+sh testall.sh</programlisting>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </section>
+  <section id="S-DATA-ERRORS-AND-INTERNAL-ERRORS">
+    <title>Data errors and internal errors</title>
+    <para>When running the Schematron script, there are two kinds of reports: a data constraint error or an internal error.</para>
+    <para>A data constraint error report starts with an enumeration of the error, followed by the error message, followed by the context of the error, followed by <literal>" / "</literal>, followed by the failed rule expression.</para>
+    <para>Internal errors are of particular importance to the developers of the Schematron, as these reflect previously-undetected errors or improvements in the schema that should be repaired. These should be reported.</para>
+  </section>
   <section id="S-VALIDATING-ONES-OWN-TEST-FILES">
     <title>Validating one’s own test files</title>
     <para>To validate a test document of one’s own that is found in your local computer file system there is a Java-based invocation for each of the Windows and Shell environments:</para>

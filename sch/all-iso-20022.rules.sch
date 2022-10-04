@@ -11,8 +11,9 @@
   <title>Constraints for remt.001.001.05 and remt.002.001.02 instances</title>
 
   <pattern>
-    <rule context="/remt1:future-work-here |
-                   /remt2:future-work-here"/>
+    <rule context="/remt1:future-stuff-here | /remt2:future-stuff-here">
+      <report test="true()">The Schematron script needs to be changed.</report>
+    </rule>
   </pattern>
 
 </schema>
