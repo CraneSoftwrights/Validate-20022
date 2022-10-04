@@ -17,24 +17,28 @@ An environment with which to validate XML documents against a couple of ISO-2002
 
 Download and unzip the latest release named:
 
-- `Validate-20022-tools-CCMMYYDD-HHMMz.zip`
+- `Validate-20022-tools-CCMMYYDD-HHMMSSz.zip`
 
 This creates:
 
 - `archive-only-not-in-final-distribution/` directory with information about building this environment
-- `Validate-20022-CCMMYYDD-HHMMz.zip` distribution package
+- `Validate-20022-CCMMYYDD-HHMMSSz.zip` distribution package
 
 The distribution package is what is made available to end users who want to run the environment. When this ZIP file is unzipped, one finds:
 
 - `readme-validation-artefacts.html` with a description of the packages and all invocation information found below
-- `release.txt` and `release-CCMMYYDD-HHMMz.txt` used to distinguish this package from other packages
+- `release.txt` and `release-CCMMYYDD-HHMMSSz.txt` used to distinguish this package from other packages
 - `sch/` directory of Schematron resources
 - `val/` directory of validation invocations
 - `xml/` directory of sample XML files
 - `xsd/` directory of W3C Schema files
 - `xsl/` directory of XSLT implementations of Schematron resources
 
-## Invocation
+## Complete documentation
+
+The `readme-validation-artefacts.html` in the distribution has the complete documentation for this environment.
+
+#### Invocation summary
 
 To validate a test document of one’s own that is found in your local computer file system there is a Java-based invocation for each of the Windows and Shell environments:
 - Windows drag-n-drop:
