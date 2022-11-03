@@ -8,6 +8,10 @@
   <!--other constants and lookup values-->
   <property name="thisdir" value="${user.dir}"/>
   <property name="utilitydir" value="${thisdir}/utilities/"/>
+  <!--software timestamps-->
+  <property name="ods2obdgc" value="20211105-2030z"/>
+  <!--documentation-->
+  <echo message="ods2obdgc=${ods2obdgc}"/>
   <echo message="dir=${dir}"/>
   <echo message="utilitydir=${utilitydir}"/>
   <echo message="thisdir=${thisdir}"/>
@@ -109,7 +113,7 @@
   <exec executable="wget">
     <arg value="--no-check-certificate"/>
     <arg value="-O"/>
-    <arg value="${dir}/BPC-Remittance-Rules-Spreadsheet-Google.ods"/>
+    <arg value="${dir}/BPC-Remittance-Rules-Spreadsheet-${dateTime}.ods"/>
     <arg value="${ssGoogle}/export?format=ods"/>
   </exec>
   <property name="lengthen-uri"
@@ -119,7 +123,7 @@
   <antcallback target="-ods2gc" return="returnGCss">
     <param name="okay"   value="gc-sig-okay"/>
     <param name="source" 
-                 value="${dir}/BPC-Remittance-Rules-Spreadsheet-Google.ods"/>
+                 value="${dir}/BPC-Remittance-Rules-Spreadsheet-${dateTime}.ods"/>
     <param name="target" 
       value="${dir}/BPC-Remittance-Rules-Spreadsheet-${dateTime}.gc"/>
     <param name="identification-uri" value="${ident-uri}"/>
@@ -137,12 +141,33 @@
   <copy unless:set="gcSScreated"
  file="${dir}/BPC-Remittance-Rules-Spreadsheet-${dateTime}.gc.error.txt"
 tofile="${dir}/VALID-REMITTANCE-RULES-GC-FILE-NOT-GENERATED.txt"/>
+  <copy unless:set="gcSScreated" preservelastmodified="true"
+        todir="${dir}/Validate-20022-${dateTime}">
+    <fileset dir="${dir}">
+      <include name="VALID-REMITTANCE-RULES-GC-FILE-NOT-GENERATED.txt"/>
+    </fileset>
+  </copy>
 
   <!--label the directory for future reference-->
   <echo file="${dir}/Validate-20022-${dateTime}/release-${dateTime}.txt"
         message="${dateTime}"/>
   <echo file="${dir}/Validate-20022-${dateTime}/release.txt"
         message="${dateTime}"/>
+
+  <!--download the XLS spreadsheet version-->
+  <exec executable="wget">
+    <arg value="--no-check-certificate"/>
+    <arg value="-O"/>
+    <arg value="${dir}/BPC-Remittance-Rules-Spreadsheet-${dateTime}.xlsx"/>
+    <arg value="${ssGoogle}/export?format=xlsx"/>
+  </exec>
+
+  <copy preservelastmodified="true"
+        todir="${dir}/Validate-20022-${dateTime}/bpc">
+    <fileset dir="${dir}">
+      <include name="BPC-Remittance-Rules-Spreadsheet-${dateTime}.*"/>
+    </fileset>
+  </copy>
 
   <!--package it all up-->
   <antcall target="-package"/>
