@@ -110,12 +110,36 @@
   
   <echo file="${dir}/wget-spreadsheet-time.txt" message="${wgettime}"/>
   <echo file="${dir}/wget-spreadsheet-uri.txt" message="${ssGoogle}"/>
-  <exec executable="wget">
-    <arg value="--no-check-certificate"/>
-    <arg value="-O"/>
-    <arg value="${dir}/BPC-Remittance-Rules-Spreadsheet-${dateTime}.ods"/>
-    <arg value="${ssGoogle}/export?format=ods"/>
-  </exec>
+  <!--download the XLS spreadsheet version for documentation-->
+  <available property="debugODS"
+             file="../BPC-Remittance-Rules-Spreadsheet-debug.ods"/>
+  <sequential if:set="debugODS">
+    <echo message="Copying debug XLS and ODS files from parent directory..."/>
+    <copy file="../BPC-Remittance-Rules-Spreadsheet-debug.ods"
+          preservelastmodified="false"
+          tofile="${dir}/BPC-Remittance-Rules-Spreadsheet-${dateTime}.ods"/>
+    <copy file="../BPC-Remittance-Rules-Spreadsheet-debug.xlsx"
+          preservelastmodified="false"
+          tofile="${dir}/BPC-Remittance-Rules-Spreadsheet-${dateTime}.xlsx"/>
+  </sequential>
+  <sequential unless:set="debugODS">
+    <echo message="Fetching XLS and ODS files from Google Drive..."/>
+    <exec executable="wget">
+      <arg value="--no-check-certificate"/>
+      <arg value="-O"/>
+      <arg value="${dir}/BPC-Remittance-Rules-Spreadsheet-${dateTime}.xlsx"/>
+      <arg value="${ssGoogle}/export?format=xlsx"/>
+    </exec>
+    <!--download the ODS spreadsheet version for processing-->
+    <exec executable="wget">
+      <arg value="--no-check-certificate"/>
+      <arg value="-O"/>
+      <arg value="${dir}/BPC-Remittance-Rules-Spreadsheet-${dateTime}.ods"/>
+      <arg value="${ssGoogle}/export?format=ods"/>
+    </exec>
+  </sequential>
+  
+  <echo message="Converting ODS to GC..."/>
   <property name="lengthen-uri"
             location="${dir}/bpcSSmassage.xml"/>
   <property name="ident-uri"
@@ -153,14 +177,6 @@ tofile="${dir}/VALID-REMITTANCE-RULES-GC-FILE-NOT-GENERATED.txt"/>
         message="${dateTime}"/>
   <echo file="${dir}/Validate-20022-${dateTime}/release.txt"
         message="${dateTime}"/>
-
-  <!--download the XLS spreadsheet version-->
-  <exec executable="wget">
-    <arg value="--no-check-certificate"/>
-    <arg value="-O"/>
-    <arg value="${dir}/BPC-Remittance-Rules-Spreadsheet-${dateTime}.xlsx"/>
-    <arg value="${ssGoogle}/export?format=xlsx"/>
-  </exec>
 
   <copy preservelastmodified="true"
         todir="${dir}/Validate-20022-${dateTime}/bpc">
