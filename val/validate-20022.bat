@@ -17,16 +17,16 @@ if exist "%~1.error.txt" del "%~1.error.txt"
 if exist "%~1.svrl.xml" del "%~1.svrl.xml"
 
 echo ===== Phase 1: XSD schema validation =====
-call "%~dp0w3cschema.bat" "%~dp0../xsd/all-iso-20022.xsd" "%~1" > "%~1.error.txt"
+call "%~dp0w3cschema.bat" "%~dp0../iso/all-iso-20022.xsd" "%~1" > "%~1.error.txt"
 set errorRet=%errorlevel%
 if %errorRet% neq 0 goto :error
 echo No schema validation errors.
 del "%~1.error.txt"
 
-if not exist "%~dp0../xsl/all-iso-20022.rules.xsl" goto :noxslt
+if not exist "%~dp0../bpc/BPC-Remittance-Rules.xsl" goto :noxslt
 
 echo ===== Phase 2: Data integrity validation =====
-call "%~dp0xslt.bat" "%~1" "%~dp0../xsl/all-iso-20022.rules.xsl" "%~1.svrl.xml" 2> "%~1.error.txt"
+call "%~dp0xslt.bat" "%~1" "%~dp0../bpc/BPC-Remittance-Rules.xsl" "%~1.svrl.xml" 2> "%~1.error.txt"
 set errorRet=%errorlevel%
 if %errorRet% neq 0 goto :error
 del "%~1.error.txt"

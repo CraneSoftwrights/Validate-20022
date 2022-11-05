@@ -19,7 +19,7 @@ if [ -f "$1.error.txt" ]; then rm "$1.error.txt" ; fi
 if [ -f "$1.svrl.xml" ];  then rm "$1.svrl.xml"  ; fi
 
 echo ===== Phase 1: XSD schema validation =====
-sh "$DP0/w3cschema.sh" "$DP0/../xsd/all-iso-20022.xsd" "$1" 2>&1 >"$1.error.txt"
+sh "$DP0/w3cschema.sh" "$DP0/../iso/all-iso-20022.xsd" "$1" 2>&1 >"$1.error.txt"
 errorRet=$?
 
 if [ $errorRet -eq 0 ]
@@ -27,11 +27,11 @@ then echo No schema validation errors. ; rm "$1.error.txt"
 else cat "$1.error.txt"; exit $errorRet
 fi
 
-if [ -f "$DP0/../xsl/all-iso-20022.rules.xsl" ]
+if [ -f "$DP0/../bpc/BPC-Remittance-Rules.xsl" ]
 then
 
 echo ===== Phase 2: Data integrity validation =====
-sh "$DP0/xslt.sh" "$1" "$DP0/../xsl/all-iso-20022.rules.xsl" "$1.svrl.xml" 2>"$1.error.txt"
+sh "$DP0/xslt.sh" "$1" "$DP0/../bpc/BPC-Remittance-Rules.xsl" "$1.svrl.xml" 2>"$1.error.txt"
 errorRet=$?
 
 if [ $errorRet -eq 0 ]

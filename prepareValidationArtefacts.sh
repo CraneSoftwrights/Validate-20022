@@ -9,7 +9,7 @@ export targetdir="$1"
 export dateTime=$3
 export numberOfProcesses=5
 
-export ssGoogle=https://docs.google.com/spreadsheets/d/1MjMpu1I5XTHapXZjeNqonsBJFQ5VwOIJCBvmiD2L-bs
+export ssGoogle=https://docs.google.com/spreadsheets/d/1_FDegvpa960uTHhzMPjNGWoBIPkNd1-81rBfKNCKncY
 
 bash prepareValidationArtefacts-common.sh "$1" "$2" "$3" "$4"
 

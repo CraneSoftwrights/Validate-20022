@@ -52,22 +52,10 @@
     <param name="target" value="${dir}/readme-testSVRL4ISO20022errors.html"/>
   </antcall>
   
-  <mkdir dir="${dir}/xsl"/>
-  <antcall target="-sch2xsl">
-    <param name="schin" value="sch/all-iso-20022.rules.sch"/>
-    <param name="xslout" value="${dir}/xsl/all-iso-20022.rules.xsl"/>
-  </antcall>
-
   <!--copy directories-->
   <copy preservelastmodified="true"
         todir="${dir}/Validate-20022-${dateTime}/val">
     <fileset dir="${dir}/val">
-      <include name="**"/>
-    </fileset>
-  </copy>
-  <copy preservelastmodified="true"
-        todir="${dir}/Validate-20022-${dateTime}/sch">
-    <fileset dir="${dir}/sch">
       <include name="**"/>
     </fileset>
   </copy>
@@ -78,18 +66,12 @@
     </fileset>
   </copy>
   <copy preservelastmodified="true"
-        todir="${dir}/Validate-20022-${dateTime}/xsd">
-    <fileset dir="${dir}/xsd">
+        todir="${dir}/Validate-20022-${dateTime}/iso">
+    <fileset dir="${dir}/iso">
       <include name="**"/>
     </fileset>
   </copy>
-  <copy preservelastmodified="true"
-        todir="${dir}/Validate-20022-${dateTime}/xsl">
-    <fileset dir="${dir}/xsl">
-      <include name="**"/>
-    </fileset>
-  </copy>
-  
+
   <!--add generated files into the distribution directory-->
   <copy preservelastmodified="true"
         todir="${dir}/Validate-20022-${dateTime}/val">
@@ -124,6 +106,7 @@
   </sequential>
   <sequential unless:set="debugODS">
     <echo message="Fetching XLS and ODS files from Google Drive..."/>
+    <echo message="${ssGoogle}/export?format=xlsx"/>
     <exec executable="wget">
       <arg value="--no-check-certificate"/>
       <arg value="-O"/>
@@ -131,6 +114,7 @@
       <arg value="${ssGoogle}/export?format=xlsx"/>
     </exec>
     <!--download the ODS spreadsheet version for processing-->
+    <echo message="${ssGoogle}/export?format=ods"/>
     <exec executable="wget">
       <arg value="--no-check-certificate"/>
       <arg value="-O"/>
@@ -171,6 +155,23 @@ tofile="${dir}/VALID-REMITTANCE-RULES-GC-FILE-NOT-GENERATED.txt"/>
       <include name="VALID-REMITTANCE-RULES-GC-FILE-NOT-GENERATED.txt"/>
     </fileset>
   </copy>
+  
+  <echo message="Converting GC to SCH..."/>
+  <java append="true" classname="net.sf.saxon.Transform">
+    <arg value="--suppressXsltNamespaceCheck:on"/>
+    <arg value="-xsl:bpcRemittanceRules2sch.xsl"/>
+    <arg value="-s:${dir}/BPC-Remittance-Rules-Spreadsheet-${dateTime}.gc"/>
+    <arg value="-o:${dir}/Validate-20022-${dateTime}/bpc/BPC-Remittance-Rules.sch"/>
+    <arg value="dateTime=${dateTime}"/>
+  </java>
+  
+  <echo message="Converting SCH to XSLT..."/>
+  <antcall target="-sch2xsl">
+    <param name="schin"
+       value="${dir}/Validate-20022-${dateTime}/bpc/BPC-Remittance-Rules.sch"/>
+    <param name="xslout" 
+       value="${dir}/Validate-20022-${dateTime}/bpc/BPC-Remittance-Rules.xsl"/>
+  </antcall>
 
   <!--label the directory for future reference-->
   <echo file="${dir}/Validate-20022-${dateTime}/release-${dateTime}.txt"
@@ -188,8 +189,6 @@ tofile="${dir}/VALID-REMITTANCE-RULES-GC-FILE-NOT-GENERATED.txt"/>
   <!--package it all up-->
   <antcall target="-package"/>
 </target>
-
-<!--========================================================================-->
 
 <!--========================================================================-->
 
