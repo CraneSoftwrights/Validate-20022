@@ -3,7 +3,6 @@
                  href="utilities/article/article-html.xsl"?>
 <!DOCTYPE article [
 <!ENTITY stamp SYSTEM "readme-validation-artefacts-timestamp.txt">
-<!ENTITY google-uri "DEBUG">
 <!ENTITY % google-uri-sys-decl SYSTEM "readme-validation-artefacts.ent">
 %google-uri-sys-decl;
 ]>
