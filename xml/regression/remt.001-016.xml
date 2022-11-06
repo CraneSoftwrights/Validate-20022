@@ -74,9 +74,6 @@
         <Dbtr>
           <Nm>Payer Test1</Nm>
         </Dbtr>
-        <Cdtr>
-          <Nm>Payee Test1</Nm>
-        </Cdtr>
       </OrgnlPmtInf>
     </RmtInf>
   </RmtAdvc>

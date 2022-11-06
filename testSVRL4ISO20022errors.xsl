@@ -82,7 +82,7 @@ replace($location,'^(/.+?)\[1\]','$1')"/>
         <xsl:value-of select="replace( svrl:text, '(.)\s*$', '$1 ' )"/>
         <xsl:value-of select="$location"/>
         <xsl:text> / </xsl:text>
-        <xsl:value-of select="@test"/>
+        <xsl:value-of select="replace( @test, 'i:', '')"/>
       </xsl:variable>
       <!--log message-->
       <xsl:message select="$message"/>

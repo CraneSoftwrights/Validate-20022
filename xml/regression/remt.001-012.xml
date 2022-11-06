@@ -43,7 +43,6 @@
         </RfrdDocInf>
         <RfrdDocAmt>
           <DuePyblAmt Ccy="USD">4129.27</DuePyblAmt>
-          <RmtdAmt Ccy="USD">4129.27</RmtdAmt>
         </RfrdDocAmt>
       </Strd>
       <Strd>

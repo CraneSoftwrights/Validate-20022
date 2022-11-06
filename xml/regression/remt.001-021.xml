@@ -5,6 +5,9 @@
       <MsgId>20221001Example1</MsgId>
       <CreDtTm>2022-10-01T00:00:00</CreDtTm>
       <InitgPty>
+        <PstlAdr>
+          <Ctry>UK</Ctry>
+        </PstlAdr>
         <Id>
           <OrgId>
             <Othr>

@@ -58,6 +58,12 @@
         </RfrdDocInf>
         <RfrdDocAmt>
           <DuePyblAmt Ccy="USD">3716.34</DuePyblAmt>
+          <TaxAmt>
+            <Tp>
+              <Cd>CIT</Cd>
+            </Tp>
+            <Amt Ccy="USD">100.00</Amt>
+          </TaxAmt>
           <RmtdAmt Ccy="USD">3716.34</RmtdAmt>
         </RfrdDocAmt>
       </Strd>
@@ -76,6 +82,16 @@
         </Dbtr>
         <Cdtr>
           <Nm>Payee Test1</Nm>
+          <Id>
+            <PrvtId>
+              <Othr>
+                <Id>ABC</Id>
+                <SchmeNm>
+                  <Cd>BANK</Cd>
+                </SchmeNm>
+              </Othr>
+            </PrvtId>
+          </Id>
         </Cdtr>
       </OrgnlPmtInf>
     </RmtInf>

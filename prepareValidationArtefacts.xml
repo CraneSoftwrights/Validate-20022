@@ -34,6 +34,8 @@
 
   <echo file="${dir}/readme-validation-artefacts-timestamp.txt"
         message="${dateTime}"/>
+  <echo file="${dir}/readme-validation-artefacts-google-uri.txt"
+        message="${ssGoogle}"/>
   <antcall target="-make-doc">
     <param name="okay"   value="readme-validation-artefacts-okay"/>
     <param name="source" value="${dir}/readme-validation-artefacts.xml"/>

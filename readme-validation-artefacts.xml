@@ -3,6 +3,9 @@
                  href="utilities/article/article-html.xsl"?>
 <!DOCTYPE article [
 <!ENTITY stamp SYSTEM "readme-validation-artefacts-timestamp.txt">
+<!ENTITY google-uri "DEBUG">
+<!ENTITY % google-uri-sys-decl SYSTEM "readme-validation-artefacts.ent">
+%google-uri-sys-decl;
 ]>
 <article conformance="ids ebuzzwords quotes">
   <title>ISO 20022 Validation Artifacts - &stamp;</title>
@@ -20,11 +23,19 @@
   </articleinfo>
   <section id="S-INTRODUCTION">
     <title>Introduction</title>
-    <para>To make the validation of XML instances of select ISO 20022 schemas convenient, this environment provides Windows drag-and-drop, Windows command-line, and Shell command-line invocations.</para>
-    <para>ISO 20022 publishes a schema of hierarchy, granularity, cardinality, and lexical constraints that are imposed on XML documents to be considered valid ISO 20022 documents. Layered on top of those constraints are additional cardinality constraints imposed by the Business Payments Coalition
-      (BPC) as a minimal set of value constraints. The committee may impose further cardinality and value constraints in the future.</para>
-    <para>The validation process involves two phases: W3C XML schema validation according to the untouched ISO 20022 XSD schema, and rule validation according to the BPC list of additional document constraints maintained in the committee’s Google spreadsheet as a set of ISO Schematron contexts and
-      expressions. </para>
+    <para>To make the validation of XML instances of select ISO 20022 schemas convenient, this environment provides Windows drag-and-drop, Windows command-line, and Shell command-line invocations of a two-phase validation process.</para>
+    <para>ISO 20022 publishes a schema of hierarchy, granularity, cardinality, and lexical constraints that are imposed on XML documents to be considered valid ISO 20022 documents. </para>
+    <para>Layered on top of those constraints are additional cardinality constraints imposed by the Business Payments Coalition (BPC) as a minimal set of value constraints expressed in <ulink url="&google-uri;"/>. The committee may impose further cardinality and value constraints in the
+      future.</para>
+    <para>The validation process involves two phases: </para>
+    <orderedlist>
+      <listitem>
+        <para>W3C XML schema validation according to the untouched ISO 20022 XSD schema, and</para>
+      </listitem>
+      <listitem>
+        <para>rule validation according to the BPC list of additional document constraints maintained in the committee’s Google spreadsheet as a set of ISO Schematron contexts and expressions found at .</para>
+      </listitem>
+    </orderedlist>
     <figure id="F-TWO-PHASE-VALIDATION">
       <title>Two-phase validation</title>
       <mediaobject>
@@ -53,13 +64,29 @@
   </section>
   <section id="S-SCHEMAS">
     <title>Schemas</title>
-    <para>In the <literal>xsd/</literal> subdirectory the <literal>all-iso-20022.xsd</literal> schema imports the selection of ISO 20022 schemas, also found in the <literal>xsd/</literal> subdirectory.</para>
+    <para>In the <literal>iso/</literal> subdirectory the <literal>all-iso-20022.xsd</literal> schema imports the selection of ISO 20022 schemas, also found in the <literal>iso/</literal> subdirectory.</para>
     <para>At this time two different schemas are involved in the one validation: <literal>remt.001.001.05.xsd</literal> and <literal>remt.002.001.02.xsd</literal>.</para>
   </section>
   <section id="S-DATA-INTEGRITY-CONSTRAINT-CHECKING">
     <title>Data integrity constraint checking</title>
-    <para>In the <literal>sch/</literal> subdirectory the <literal>all-iso-20022.rules.sch</literal> Schematron schema declares all of the data integrity checks to be performed after successful XSD schema validation.</para>
-    <para>In the <literal>xsl/</literal> subdirectory the <literal>all-iso-20022.rules.xsl</literal> XSLT stylesheet expresses the runtime implementation of the Schematron rules.</para>
+    <para>In the <literal>bpc/</literal> subdirectory are all of the data integrity checks to be performed after successful XSD schema validation expressed in different syntaxes:</para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>BPC-Remittance-Rules-Spreadsheet-{time-stamp}.xls</literal> - human-readable spreadsheet</para>
+      </listitem>
+      <listitem>
+        <para><literal>BPC-Remittance-Rules-Spreadsheet-{time-stamp}.ods</literal> - human-readable spreadsheet</para>
+      </listitem>
+      <listitem>
+        <para><literal>BPC-Remittance-Rules-Spreadsheet-{time-stamp}.gc</literal> - machine-readable spreadsheet summary</para>
+      </listitem>
+      <listitem>
+        <para><literal>BPC-Remittance-Rules-Spreadsheet.sch</literal> - ISO/IEC 19757-3 Schematron compile-time expression of data integrity rules</para>
+      </listitem>
+      <listitem>
+        <para><literal>BPC-Remittance-Rules-Spreadsheet.xsl</literal> - W3C Extensible Stylesheet Language runtime expression of data integrity rules</para>
+      </listitem>
+    </itemizedlist>
   </section>
   <section id="S-VALIDATION-FILES">
     <title>Validation files</title>
@@ -103,7 +130,7 @@ where options include:
     <para>There are four illustrative XML instances being validated:</para>
     <itemizedlist>
       <listitem>
-        <para><literal>iso-20022-test-bad-syntax.xml</literal> - a document with an XML syntax error on line 9</para>
+        <para><literal>iso-20022-test-bad-syntax.xml</literal> - a document with an XML syntax error on line 6</para>
         <itemizedlist>
           <listitem>
             <para>the end delimiter of the closing tag for the <literal>MsgId</literal> element is missing</para>
@@ -111,10 +138,18 @@ where options include:
         </itemizedlist>
       </listitem>
       <listitem>
-        <para><literal>iso-20022-test-bad-model.xml</literal> - a document with a UBL model error on line 9</para>
+        <para><literal>iso-20022-test-bad-model.xml</literal> - a document with a ISO 20022 model error on line 6</para>
         <itemizedlist>
           <listitem>
             <para>the expected date and time element contains only a date value</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para><literal>iso-20022-test-bad-rule.xml</literal> - a document with a BPC data integrity error for the element <literal>/Document/RmtAdvc[1]/RmtInf[1]</literal></para>
+        <itemizedlist>
+          <listitem>
+            <para>there are no <literal>&lt;Strd></literal> element children of <literal>&lt;RmtInf></literal> as required by the BPC </para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -163,25 +198,23 @@ sh test.sh</programlisting>
 Validating "iso-20022-test-bad-syntax.xml"
 ############################################################
 ===== Phase 1: XSD schema validation =====
-org.xml.sax.SAXParseException; systemId: file:///Users/admin/u/git/Validate-20022/
- results/Validate-20022-tools-test/Validate-20022-test/val/iso-20022-test-bad-syntax.xml;
- lineNumber: 6; columnNumber: 7; The end-tag for element type "MsgId" must end with
- a '>' delimiter.
-	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
-	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
-	at org.apache.xerces.jaxp.SAXParserImpl.parse(Unknown Source)
-	at java.xml/javax.xml.parsers.SAXParser.parse(SAXParser.java:276)
-	at com.nwalsh.parsers.XJParser.xsdParse(Unknown Source)
-	at com.nwalsh.parsers.XJParser.parse(Unknown Source)
-	at com.nwalsh.parsers.XJParse.run(Unknown Source)
-	at com.nwalsh.parsers.XJParse.main(Unknown Source)
+org.xml.sax.SAXParseException; systemId: val/iso-20022-test-bad-syntax.xml;
+ lineNumber: 6; columnNumber: 7; The end-tag for element type "MsgId" must
+ end with a '>' delimiter.
+ at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+ at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+ at org.apache.xerces.jaxp.SAXParserImpl.parse(Unknown Source)
+ at java.xml/javax.xml.parsers.SAXParser.parse(SAXParser.java:276)
+ at com.nwalsh.parsers.XJParser.xsdParse(Unknown Source)
+ at com.nwalsh.parsers.XJParser.parse(Unknown Source)
+ at com.nwalsh.parsers.XJParse.run(Unknown Source)
+ at com.nwalsh.parsers.XJParse.main(Unknown Source)
 Exception in thread "main" java.lang.NullPointerException
-	at com.nwalsh.parsers.XJParser.printParseStats(Unknown Source)
-	at com.nwalsh.parsers.XJParse.run(Unknown Source)
-	at com.nwalsh.parsers.XJParse.main(Unknown Source)
+ at com.nwalsh.parsers.XJParser.printParseStats(Unknown Source)
+ at com.nwalsh.parsers.XJParse.run(Unknown Source)
+ at com.nwalsh.parsers.XJParse.main(Unknown Source)
 Attempting well-formed, namespace-aware parse
-Fatal error:file:///Users/admin/u/git/Validate-20022/results/Validate-20022-tools-test/
- Validate-20022-test/val/iso-20022-test-bad-syntax.xml:6:7:The end-tag for element
+Fatal error:val/iso-20022-test-bad-syntax.xml:6:7:The end-tag for element
  type "MsgId" must end with a '>' delimiter.
 
 ############################################################
@@ -189,13 +222,27 @@ Validating "iso-20022-test-bad-model.xml"
 ############################################################
 ===== Phase 1: XSD schema validation =====
 Attempting well-formed, namespace-aware parse
-Error:file:///Users/admin/u/git/Validate-20022/results/Validate-20022-tools-test/
- Validate-20022-test/val/iso-20022-test-bad-model.xml:6:36:cvc-datatype-valid.1.2.1:
+Error:val/iso-20022-test-bad-model.xml:6:36:cvc-datatype-valid.1.2.1:
  '2022-10-01' is not a valid value for 'dateTime'.
-Error:file:///Users/admin/u/git/Validate-20022/results/Validate-20022-tools-test/
- Validate-20022-test/val/iso-20022-test-bad-model.xml:6:36:cvc-type.3.1.3:
- The value '2022-10-01' of element 'CreDtTm' is not valid.
-Parse succeeded (0.11) with 2 errors and no warnings.
+Error:val/iso-20022-test-bad-model.xml:6:36:cvc-type.3.1.3: The value
+ '2022-10-01' of element 'CreDtTm' is not valid.
+Parse succeeded (0.20) with 2 errors and no warnings.
+
+############################################################
+Validating "iso-20022-test-bad-rule.xml"
+############################################################
+===== Phase 1: XSD schema validation =====
+No schema validation errors.
+===== Phase 2: Data integrity validation =====
+1. Structured remittance information is missing. (remt.001-007)
+ /Document/RmtAdvc[1]/RmtInf[1] / count(Strd)&amp;gt;=1
+Count of data errors: 1
+
+
+The following error report is simply the exit mechanism and can be ignored:
+Error in xsl:message/@terminate on line 119 column 34 of testSVRL4ISO20022errors.xsl:
+ XTMM9000: Processing terminated by xsl:message at line 119 in testSVRL4ISO20022errors.xsl
+Processing terminated by xsl:message at line 119 in testSVRL4ISO20022errors.xsl
 
 ############################################################
 Validating "iso-20022-test-good.xml"
@@ -341,6 +388,12 @@ sh testall.sh</programlisting>
     </itemizedlist>
     <para>The next time the dynamic command DOS box is used, the new setting for the height will be in play. When the batch file completes execution, one can scroll up through the history to see the complete report.</para>
   </section>
+  <section id="S-REGRESSION-TESTS">
+    <title>Regression tests</title>
+    <para>The <literal>xml/</literal> directory includes the <literal>regression/</literal> directory with a single test file for each of the BPC errors. These test files were used to check the integrity of the rule expression in XPath. The shell invocation of the regression tests is in the
+        <literal>val/</literal> directory, named <literal>testregression.sh</literal>.</para>
+  </section>
+  <!---->
   <!--  <bibliography>
     <para>See article-bibliography.xml for bibliographic entries.</para>
   </bibliography>-->

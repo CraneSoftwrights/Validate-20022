@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  This entity technique builds an entity declaration from the contents
+  of a system file, and then invokes the declaration for an XML file to
+  leverage in an attribute definition and text. A direct reference to
+  a SYSTEM identifier in an attribute value is not allowed in XML syntax.
+  And these declarations cannot be used in an internal declaration subset
+  in an XML file, only in an external declaration subset file.
+-->
+<!ENTITY % google-uri-sys SYSTEM "readme-validation-artefacts-google-uri.txt">
+<!ENTITY % google-uri-decl '<!ENTITY google-uri "%google-uri-sys;">'>
+%google-uri-decl;
+
+<!--end-->

@@ -45,6 +45,9 @@
           <DuePyblAmt Ccy="USD">4129.27</DuePyblAmt>
           <RmtdAmt Ccy="USD">4129.27</RmtdAmt>
         </RfrdDocAmt>
+        <TaxRmt>
+          <TtlTaxAmt Ccy="USD">100.00</TtlTaxAmt>
+        </TaxRmt>
       </Strd>
       <Strd>
         <RfrdDocInf>

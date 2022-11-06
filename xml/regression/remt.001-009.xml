@@ -35,7 +35,7 @@
         <RfrdDocInf>
           <Tp>
             <CdOrPrtry>
-              <Cd>CINV</Cd>
+              <Prtry>Party</Prtry>
             </CdOrPrtry>
           </Tp>
           <Nb>683528</Nb>
@@ -50,10 +50,9 @@
         <RfrdDocInf>
           <Tp>
             <CdOrPrtry>
-              <Cd>CINV</Cd>
+              <Prtry>Party</Prtry>
             </CdOrPrtry>
           </Tp>
-          <Nb>683529</Nb>
           <RltdDt>2021-04-10</RltdDt>
         </RfrdDocInf>
         <RfrdDocAmt>

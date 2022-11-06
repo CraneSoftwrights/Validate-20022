@@ -45,6 +45,11 @@
           <DuePyblAmt Ccy="USD">4129.27</DuePyblAmt>
           <RmtdAmt Ccy="USD">4129.27</RmtdAmt>
         </RfrdDocAmt>
+        <GrnshmtRmt>
+          <Tp>
+            <CdOrPrtry><Cd>ZZZ</Cd></CdOrPrtry>
+          </Tp>
+        </GrnshmtRmt>
       </Strd>
       <Strd>
         <RfrdDocInf>

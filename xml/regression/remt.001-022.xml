@@ -76,6 +76,16 @@
         </Dbtr>
         <Cdtr>
           <Nm>Payee Test1</Nm>
+          <Id>
+            <PrvtId>
+              <Othr>
+                <Id>ABC</Id>
+                <SchmeNm>
+                  <Cd>BAN</Cd>
+                </SchmeNm>
+              </Othr>
+            </PrvtId>
+          </Id>
         </Cdtr>
       </OrgnlPmtInf>
     </RmtInf>

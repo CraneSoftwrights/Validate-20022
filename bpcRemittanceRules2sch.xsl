@@ -80,12 +80,25 @@
   <schema xmlns="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
     <title>BPC Schematron Constraints Remittance Rules</title>
     <ns prefix="xsd" uri="http://www.w3.org/2001/XMLSchema"/>
+    <ns prefix="i" uri="urn:iso:std:iso:20022:tech:xsd:remt.001.001.05"/>
     <pattern>
       <title>BPC Schematron Expressions for Remittance Rules</title>
 
-      <rule context="/*">
-        <assert test=". instance of element()">Message</assert>
-      </rule>
+      <xsl:for-each-group select="/*/SimpleCodeList/Row[
+                                  exists(bpc:col(.,'SchematronContext')) and
+                                  exists(bpc:col(.,'SchematronAssertion'))]"
+                          group-by="bpc:col(.,'SchematronContext')">
+        <rule context="{current-grouping-key()} (:{bpc:col(.,'RuleID')}:)">
+          <xsl:for-each select="current-group()">
+            <assert test="{bpc:col(.,'SchematronAssertion')}">
+              <xsl:value-of select="bpc:col(.,'ErrorMessage')"/>
+              <xsl:text> (</xsl:text>
+              <xsl:value-of select="bpc:col(.,'RuleID')"/>
+              <xsl:text>)</xsl:text>
+            </assert>
+          </xsl:for-each>
+        </rule>
+      </xsl:for-each-group>
     </pattern>
   </schema>
 </xsl:template>

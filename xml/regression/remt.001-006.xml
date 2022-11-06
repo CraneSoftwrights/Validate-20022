@@ -17,16 +17,6 @@
         </Id>
       </InitgPty>
       <MsgRcpt>
-        <Id>
-          <OrgId>
-            <Othr>
-              <Id>654321</Id>
-              <SchmeNm>
-                <Prtry>Exchange Framework</Prtry>
-              </SchmeNm>
-            </Othr>
-          </OrgId>
-        </Id>
       </MsgRcpt>
     </GrpHdr>
     <RmtInf>
