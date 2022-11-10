@@ -24,6 +24,7 @@ sh validate-20022.sh ../xml/regression/remt.001-022.xml
 sh validate-20022.sh ../xml/regression/remt.001-023.xml
 sh validate-20022.sh ../xml/regression/remt.001-024.xml
 sh validate-20022.sh ../xml/regression/remt.001-025.xml
+sh validate-20022.sh ../xml/regression/remt.001-026.xml
 
 # this last test has no errors
 sh validate-20022.sh ../xml/regression/remt.001-000.xml

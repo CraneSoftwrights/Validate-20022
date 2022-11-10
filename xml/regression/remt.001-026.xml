@@ -43,12 +43,6 @@
         </RfrdDocInf>
         <RfrdDocAmt>
           <DuePyblAmt Ccy="USD">4129.27</DuePyblAmt>
-          <DscntApldAmt>
-            <Tp>
-              <Cd>APD</Cd>
-            </Tp>
-            <Amt Ccy="USD">100.00</Amt>
-          </DscntApldAmt>
           <RmtdAmt Ccy="USD">4129.27</RmtdAmt>
         </RfrdDocAmt>
       </Strd>
@@ -61,9 +55,27 @@
           </Tp>
           <Nb>683529</Nb>
           <RltdDt>2021-04-10</RltdDt>
+          <LineDtls>
+            <Id>
+              <Nb>123</Nb>
+            </Id>
+            <Id>
+              <Tp>
+                <CdOrPrtry>
+                  <Cd>ADP</Cd>
+                </CdOrPrtry>
+              </Tp>
+            </Id>
+          </LineDtls>
         </RfrdDocInf>
         <RfrdDocAmt>
           <DuePyblAmt Ccy="USD">3716.34</DuePyblAmt>
+          <TaxAmt>
+            <Tp>
+              <Cd>CITY</Cd>
+            </Tp>
+            <Amt Ccy="USD">100.00</Amt>
+          </TaxAmt>
           <RmtdAmt Ccy="USD">3716.34</RmtdAmt>
         </RfrdDocAmt>
       </Strd>

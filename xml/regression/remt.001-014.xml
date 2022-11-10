@@ -65,9 +65,9 @@
         <Refs>
           <EndToEndId>Linking ID Example 1</EndToEndId>
         </Refs>
-        <Amt>
-          <InstdAmt Ccy="USD">7845.61</InstdAmt>
-        </Amt>
+        <ReqdExctnDt>
+          <Dt>2022-11-04</Dt>
+        </ReqdExctnDt>
         <Dbtr>
           <Nm>Payer Test1</Nm>
         </Dbtr>

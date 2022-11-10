@@ -53,10 +53,7 @@
               <Prtry>Party</Prtry>
             </CdOrPrtry>
           </Tp>
-          <Nb>683528</Nb>
-        </RfrdDocInf>
-        <RfrdDocInf>
-          <Nb>683528</Nb>
+          <RltdDt>2021-04-10</RltdDt>
         </RfrdDocInf>
         <RfrdDocAmt>
           <DuePyblAmt Ccy="USD">3716.34</DuePyblAmt>

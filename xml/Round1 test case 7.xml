@@ -1,0 +1,123 @@
+<GrpHdr>
+     <MsgId>20221007Example7</MsgId>
+     <CreDtTm>2022-10-07</CreDtTm>
+     <InitgPty>
+          <Id>
+               <OrgId>
+                    <Othr>
+                         <Id>789012</Id>
+                         <SchmeNm>
+                              <Prtry>Exchange Framework</Prtry>
+                         </SchmeNm>
+                    </Othr>
+               </OrgId>
+          </Id>
+     </InitgPty>
+     <MsgRcpt>
+          <Id>
+               <OrgId>
+                    <Othr>
+                         <Id>210987</Id>
+                         <SchmeNm>
+                              <Prtry>Exchange Framework</Prtry>
+                         </SchmeNm>
+                    </Othr>
+               </OrgId>
+          </Id>
+     </MsgRcpt>
+</GrpHdr>
+<RmtInf>
+     <RmtId>Linking ID Example 7</RmtId>
+     <Strd>
+          <RfrdDocInf>
+               <Tp>
+                    <CdOrPrtry>
+                         <Cd>CINV</Cd>
+                    </CdOrPrtry>
+               </Tp>
+               <Nb>822550274</Nb>
+               <RltdDt>2021-04-07</RltdDt>
+               <LineDtls>
+                    <Id>
+                         <Tp>
+                              <CdOrPrtry>
+                                   <Cd>LTNB</Cd>
+                              </CdOrPrtry>
+                         </Tp>
+                         <Nb>44121259</Nb>
+                         <RltdDt>2021-04-07</RltdDt>
+                    </Id>
+                    <Desc>Lot description 1</Desc>
+                    <Amt>
+                         <DuePyblAmt Ccy="USD">3000.00</DuePyblAmt>
+                         <AdjstmntAmtAndRsn>
+                              <Amt Ccy="USD">100.00</Amt>
+                              <CdtDbtInd>DBIT</CdtDbtInd>
+                              <Rsn>ADJ1</Rsn>
+                         </AdjstmntAmtAndRsn>
+                         <RmtdAmt Ccy="USD">2900.00</RmtdAmt>
+                    </Amt>
+               </LineDtls>
+               <LineDtls>
+                    <Id>
+                         <Tp>
+                              <CdOrPrtry>
+                                   <Cd>LTNB</Cd>
+                              </CdOrPrtry>
+                         </Tp>
+                         <Nb>44124397</Nb>
+                         <RltdDt>2021-04-07</RltdDt>
+                    </Id>
+                    <Desc>Lot description 2</Desc>
+                    <Amt>
+                         <DuePyblAmt Ccy="USD">2950.00</DuePyblAmt>
+                         <AdjstmntAmtAndRsn>
+                              <Amt Ccy="USD">150.00</Amt>
+                              <CdtDbtInd>DBIT</CdtDbtInd>
+                              <Rsn>ADJ2</Rsn>
+                              <AddtlInf>This is a deduction with code ADJ2</AddtlInf>
+                         </AdjstmntAmtAndRsn>
+                         <RmtdAmt Ccy="USD">2800.00</RmtdAmt>
+                    </Amt>
+               </LineDtls>
+          </RfrdDocInf>
+          <RfrdDocAmt>
+               <DuePyblAmt Ccy="USD">22468.50</DuePyblAmt>
+               <AdjstmntAmtAndRsn>
+                    <Amt Ccy="USD">250.00</Amt>
+                    <CdtDbtInd>DBIT</CdtDbtInd>
+               </AdjstmntAmtAndRsn>
+               <RmtdAmt Ccy="USD">22218.50</RmtdAmt>
+          </RfrdDocAmt>
+     </Strd>
+     <Strd>
+          <RfrdDocInf>
+               <Tp>
+                    <CdOrPrtry>
+                         <Cd>CINV</Cd>
+                    </CdOrPrtry>
+               </Tp>
+               <Nb>822550540</Nb>
+               <RltdDt>2021-04-08</RltdDt>
+          </RfrdDocInf>
+          <RfrdDocAmt>
+               <DuePyblAmt Ccy="USD">15489.60</DuePyblAmt>
+               <RmtdAmt Ccy="USD">15489.60</RmtdAmt>
+          </RfrdDocAmt>
+     </Strd>
+</RmtInf>
+<OrgnlPmtInf>
+     <Refs>
+          <EndToEndId>Linking ID Example 7</EndToEndId>
+     </Refs>
+     <Amt>
+          <InstdAmt Ccy="USD">22218.50</InstdAmt>
+     </Amt>
+     <Dbtr>
+          <Nm>Payer Test7</Nm>
+     </Dbtr>
+     <Cdtr>
+          <Nm>Payee Test7</Nm>
+     </Cdtr>
+</OrgnlPmtInf>
+

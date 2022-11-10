@@ -43,12 +43,6 @@
         </RfrdDocInf>
         <RfrdDocAmt>
           <DuePyblAmt Ccy="USD">4129.27</DuePyblAmt>
-          <DscntApldAmt>
-            <Tp>
-              <Cd>APD</Cd>
-            </Tp>
-            <Amt Ccy="USD">100.00</Amt>
-          </DscntApldAmt>
           <RmtdAmt Ccy="USD">4129.27</RmtdAmt>
         </RfrdDocAmt>
       </Strd>
@@ -87,7 +81,7 @@
               <Othr>
                 <Id>ABC</Id>
                 <SchmeNm>
-                  <Cd>BANK</Cd>
+                  <Cd>BAN</Cd>
                 </SchmeNm>
               </Othr>
             </PrvtId>

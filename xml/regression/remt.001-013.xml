@@ -43,7 +43,6 @@
         </RfrdDocInf>
         <RfrdDocAmt>
           <DuePyblAmt Ccy="USD">4129.27</DuePyblAmt>
-          <RmtdAmt Ccy="USD">4129.27</RmtdAmt>
         </RfrdDocAmt>
       </Strd>
       <Strd>
@@ -65,6 +64,9 @@
         <Refs>
           <EndToEndId>Linking ID Example 1</EndToEndId>
         </Refs>
+        <Amt>
+          <InstdAmt Ccy="USD">7845.61</InstdAmt>
+        </Amt>
         <ReqdExctnDt>
           <Dt>2022-11-04</Dt>
         </ReqdExctnDt>
