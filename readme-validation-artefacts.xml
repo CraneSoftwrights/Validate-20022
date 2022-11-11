@@ -32,7 +32,7 @@
         <para>W3C XML schema validation according to the untouched ISO 20022 XSD schema, and</para>
       </listitem>
       <listitem>
-        <para>rule validation according to the BPC list of additional document constraints maintained in the committee’s Google spreadsheet as a set of ISO Schematron contexts and expressions found at .</para>
+        <para>rule validation according to the BPC list of additional document constraints maintained in the committee’s Google spreadsheet (cited above) as a set of ISO Schematron contexts and expressions.</para>
       </listitem>
     </orderedlist>
     <figure id="F-TWO-PHASE-VALIDATION">
@@ -55,7 +55,7 @@
         <para>ISO/IEC 19757-3 Schematron schema of BPC constraints that is transformed into the XSLT used for validation, and</para>
       </listitem>
       <listitem>
-        <para>ISO/IEC 26300 Open Document Format (ODF) spreadsheet ODS XML exported from the committee Google spreadsheet that is transformed into the Schematron schema.</para>
+        <para>ISO/IEC 26300 Open Document Format (ODF) spreadsheet ODS XML, exported from the committee Google spreadsheet, that is transformed into the Schematron schema.</para>
       </listitem>
     </orderedlist>
     <para>Not shown in the diagram are an XSLT stylesheet that transforms the XML output of the depicted XSLT transformation into a simple text file and a validation true/false result, the XSLT stylesheets that transform the ODF into Schematron, and the XSLT stylesheets that transform the Schematron
@@ -107,7 +107,13 @@
         <para><literal>windows-drag-n-drop/*.bat</literal> - Windows-based invocations using drag-n-drop functionality supporting dropping the XML file to be validated onto the batch file in Windows Explorer</para>
       </listitem>
       <listitem>
-        <para><literal>testall.*</literal> - invocations for each of the files in the <literal>xml/</literal> subdirectory</para>
+        <para><literal>test.*</literal> - invocations to illustrate the three types of errors in BPC ISO XML documents: XML syntax errors, ISO model errors, and BPC rule errors (see <xref linkend="S-XML-ISO-AND-BPC-ERRORS"/> for more information)</para>
+      </listitem>
+      <listitem>
+        <para><literal>testall.*</literal> - invocations for each of the files in the <literal>xml/</literal> subdirectory (see <xref linkend="S-XML-SAMPLE-FILES"/> for more information)</para>
+      </listitem>
+      <listitem>
+        <para><literal>testregression.sh</literal> - shell invocation of a suite of regression tests used in development and testing (see <xref linkend="S-REGRESSION-TESTS"/> for more information)</para>
       </listitem>
     </itemizedlist>
   </section>
@@ -125,75 +131,77 @@ where options include:
   </section>
   <section id="S-DEMONSTRATION-EXECUTION">
     <title>Demonstration execution</title>
-    <para>A running Java-based demonstration of the two-phase ingestion of an ISO 20022 XML document is in the <literal>val/</literal> subdirectory. </para>
-    <para>There are four illustrative XML instances being validated:</para>
-    <itemizedlist>
-      <listitem>
-        <para><literal>iso-20022-test-bad-syntax.xml</literal> - a document with an XML syntax error on line 6</para>
-        <itemizedlist>
-          <listitem>
-            <para>the end delimiter of the closing tag for the <literal>MsgId</literal> element is missing</para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
-      <listitem>
-        <para><literal>iso-20022-test-bad-model.xml</literal> - a document with a ISO 20022 model error on line 6</para>
-        <itemizedlist>
-          <listitem>
-            <para>the expected date and time element contains only a date value</para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
-      <listitem>
-        <para><literal>iso-20022-test-bad-rule.xml</literal> - a document with a BPC data integrity error for the element <literal>/Document/RmtAdvc[1]/RmtInf[1]</literal></para>
-        <itemizedlist>
-          <listitem>
-            <para>there are no <literal>&lt;Strd></literal> element children of <literal>&lt;RmtInf></literal> as required by the BPC </para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
-      <listitem>
-        <para><literal>iso-20022-test-good.xml</literal> - a valid document without violating Schematron data integrity constraints</para>
-      </listitem>
-    </itemizedlist>
-    <para>To run the demonstration there is an invocation for each of the Windows and Shell environments:</para>
-    <itemizedlist>
-      <listitem>
-        <para>Windows command line:</para>
-        <itemizedlist>
-          <listitem>
-            <para>
-              <programlisting>cd val\
+    <section id="S-XML-ISO-AND-BPC-ERRORS">
+      <title>XML, ISO, and BPC errors</title>
+      <para>A running Java-based demonstration of the two-phase ingestion of an ISO 20022 XML document is in the <literal>val/</literal> subdirectory. </para>
+      <para>There are four illustrative XML instances being validated:</para>
+      <itemizedlist>
+        <listitem>
+          <para><literal>iso-20022-test-bad-syntax.xml</literal> - a document with an XML syntax error on line 6</para>
+          <itemizedlist>
+            <listitem>
+              <para>the end delimiter of the closing tag for the <literal>MsgId</literal> element is missing</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+        <listitem>
+          <para><literal>iso-20022-test-bad-model.xml</literal> - a document with a ISO 20022 model error on line 6</para>
+          <itemizedlist>
+            <listitem>
+              <para>the expected date and time element contains only a date value</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+        <listitem>
+          <para><literal>iso-20022-test-bad-rule.xml</literal> - a document with a BPC data integrity error for the element <literal>/Document/RmtAdvc[1]/RmtInf[1]</literal></para>
+          <itemizedlist>
+            <listitem>
+              <para>there are no <literal>&lt;Strd></literal> element children of <literal>&lt;RmtInf></literal> as required by the BPC </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+        <listitem>
+          <para><literal>iso-20022-test-good.xml</literal> - a valid document without violating Schematron data integrity constraints</para>
+        </listitem>
+      </itemizedlist>
+      <para>To run the demonstration there is an invocation for each of the Windows and Shell environments:</para>
+      <itemizedlist>
+        <listitem>
+          <para>Windows command line:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <programlisting>cd val\
 test.bat</programlisting>
-            </para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
-      <listitem>
-        <para>Windows explorer:</para>
-        <itemizedlist>
-          <listitem>
-            <para>double-click on <literal>test.bat</literal> to execute the program in a pop-up window (the batch file will pause at the end)</para>
-          </listitem>
-          <listitem>
-            <para>note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them (see <xref linkend="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY"/> for details on increasing the length of the history)</para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
-      <listitem>
-        <para>Shell:</para>
-        <itemizedlist>
-          <listitem>
-            <para>
-              <programlisting>cd val/
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+        <listitem>
+          <para>Windows explorer:</para>
+          <itemizedlist>
+            <listitem>
+              <para>double-click on <literal>test.bat</literal> to execute the program in a pop-up window (the batch file will pause at the end)</para>
+            </listitem>
+            <listitem>
+              <para>note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them (see <xref linkend="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY"/> for details on increasing the length of the history)</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+        <listitem>
+          <para>Shell:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <programlisting>cd val/
 sh test.sh</programlisting>
-            </para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
-    </itemizedlist>
-    <para>The following is a transcript of the output of running the demonstration:</para>
-    <programlisting>############################################################
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </itemizedlist>
+      <para>The following is a transcript of the output of running the demonstration:</para>
+      <programlisting>############################################################
 Validating "iso-20022-test-bad-syntax.xml"
 ############################################################
 ===== Phase 1: XSD schema validation =====
@@ -250,42 +258,46 @@ Validating "iso-20022-test-good.xml"
 No schema validation errors.
 ===== Phase 2: Data integrity validation =====
 No data integrity validation errors.</programlisting>
-    <para>Also included is a script to run all of the document types in both of the customizations for both “good” and “bad” test files:</para>
-    <itemizedlist>
-      <listitem>
-        <para>Windows command line:</para>
-        <itemizedlist>
-          <listitem>
-            <para>
-              <programlisting>cd val\
+    </section>
+    <section id="S-XML-SAMPLE-FILES">
+      <title>XML sample files</title>
+      <para>Also included is a script to run all of the test files in the <literal>xml\</literal> subdirectory:</para>
+      <itemizedlist>
+        <listitem>
+          <para>Windows command line:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <programlisting>cd val\
 testall.bat</programlisting>
-            </para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
-      <listitem>
-        <para>Windows explorer:</para>
-        <itemizedlist>
-          <listitem>
-            <para>double-click on <literal>testall.bat</literal> to execute the program in a pop-up window (the batch file will pause at the end)</para>
-          </listitem>
-          <listitem>
-            <para>note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them (see <xref linkend="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY"/> for details on increasing the length of the history)</para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
-      <listitem>
-        <para>Shell:</para>
-        <itemizedlist>
-          <listitem>
-            <para>
-              <programlisting>cd val/
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+        <listitem>
+          <para>Windows explorer:</para>
+          <itemizedlist>
+            <listitem>
+              <para>double-click on <literal>testall.bat</literal> to execute the program in a pop-up window (the batch file will pause at the end)</para>
+            </listitem>
+            <listitem>
+              <para>note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them (see <xref linkend="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY"/> for details on increasing the length of the history)</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+        <listitem>
+          <para>Shell:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <programlisting>cd val/
 sh testall.sh</programlisting>
-            </para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
-    </itemizedlist>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </itemizedlist>
+    </section>
   </section>
   <section id="S-DATA-ERRORS-AND-INTERNAL-ERRORS">
     <title>Data errors and internal errors</title>
@@ -335,7 +347,7 @@ sh testall.sh</programlisting>
         <itemizedlist>
           <listitem>
             <para><programlisting>validate-20022.bat xml-file</programlisting>for example from the <literal>test.bat</literal> demonstration:</para>
-            <programlisting>validate-20022.bat test.xml</programlisting>
+            <programlisting>validate-20022.bat iso-20022-test-bad-rule.xml</programlisting>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -344,7 +356,7 @@ sh testall.sh</programlisting>
         <itemizedlist>
           <listitem>
             <para><programlisting>sh validate-20022.sh xml-file</programlisting>for example from the <literal>test.sh</literal> demonstration:</para>
-            <programlisting>sh validate-20022.sh test.xml</programlisting>
+            <programlisting>sh validate-20022.sh iso-20022-test-bad-rule.xml</programlisting>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -353,12 +365,17 @@ sh testall.sh</programlisting>
     <para>When there is a data integrity error, the script also creates a file named by adding the “<literal>.svrl.xml</literal>” suffix to the input file name and records the Schematron SVRL record information in that file.</para>
     <para>For example, if one has a test file for customization ‘core’ named <literal>myISO20022Test.xml</literal> in the <literal>val\</literal> directory then in Windows one would use:</para>
     <para><programlisting>validate-20022.bat myISO20022Test.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
-    <programlisting>Validate-20022-20221003-1440z\val\validate-20022.bat myISO20022Test.xml</programlisting>
+    <programlisting>Validate-20022-CCYYMMDD-HHMMSSz\val\validate-20022.bat myISO20022Test.xml</programlisting>
     <para>And if one is using Shell in the <literal>val/</literal> directory one would use:</para>
     <para><programlisting>sh validate-20022.sh myISO20022Test.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
-    <programlisting>sh Validate-20022-20221003-1440z/val/validate-20022.sh myISO20022Test.xml</programlisting>
+    <programlisting>sh Validate-20022-CCYYMMDD-HHMMSSz/val/validate-20022.sh myISO20022Test.xml</programlisting>
   </section>
-  <!--<section id="S-EXAMPLES"><title>Examples</title><para>The <literal>examples/</literal> subdirectory has a number of example BPC UBL XML instances. The <literal>val/test-examples.bat</literal> and <literal>val/test-examples.sh</literal> invocations check each of these examples. In Windows Explorer, double-click on <literal>test-examples.bat</literal> to execute the program in a pop-up window (the batch file will pause at the end). Note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them (see <xref linkend="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY"/> for details on increasing the length of the history).</para></section>-->
+  <section id="S-EXAMPLES">
+    <title>Examples</title>
+    <para>The <literal>xml/</literal> subdirectory has a number of example BPC ISO XML instances. The <literal>val/testall.bat</literal> and <literal>val/testall.sh</literal> invocations check each of these examples. In Windows Explorer, double-click on <literal>testall.bat</literal> to execute the
+      program in a pop-up window (the batch file will pause at the end). Note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them (see <xref linkend="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY"/> for details on increasing the length
+      of the history).</para>
+  </section>
   <section id="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY">
     <title>Configuring Windows DOS box history</title>
     <para>Should the dynamic command DOS box history be too short for a long report, the height of the box window (dictating the history) can be increased as follows:</para>
@@ -389,11 +406,7 @@ sh testall.sh</programlisting>
   </section>
   <section id="S-REGRESSION-TESTS">
     <title>Regression tests</title>
-    <para>The <literal>xml/</literal> directory includes the <literal>regression/</literal> directory with a single test file for each of the BPC errors. These test files were used to check the integrity of the rule expression in XPath. The shell invocation of the regression tests is in the
-        <literal>val/</literal> directory, named <literal>testregression.sh</literal>.</para>
+    <para>The <literal>xml/</literal> directory includes the <literal>regression/</literal> directory with a single test file for each of the BPC errors. These test files were used during development to check the integrity of the rule expression in XPath found in the spreadsheet. The shell
+      invocation of the regression tests is in the <literal>val/</literal> directory, named <literal>testregression.sh</literal>.</para>
   </section>
-  <!---->
-  <!--  <bibliography>
-    <para>See article-bibliography.xml for bibliographic entries.</para>
-  </bibliography>-->
 </article>
