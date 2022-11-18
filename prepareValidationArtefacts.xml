@@ -96,13 +96,13 @@
   <echo file="${dir}/wget-spreadsheet-uri.txt" message="${ssGoogle}"/>
   <!--download the XLS spreadsheet version for documentation-->
   <available property="debugODS"
-             file="../BPC-Remittance-Rules-Spreadsheet-debug.ods"/>
+             file="../BPC-Remittance-Rules-Spreadsheet-${dateTime}.ods"/>
   <sequential if:set="debugODS">
     <echo message="Copying debug XLS and ODS files from parent directory..."/>
-    <copy file="../BPC-Remittance-Rules-Spreadsheet-debug.ods"
+    <copy file="../BPC-Remittance-Rules-Spreadsheet-${dateTime}.ods"
           preservelastmodified="false"
           tofile="${dir}/BPC-Remittance-Rules-Spreadsheet-${dateTime}.ods"/>
-    <copy file="../BPC-Remittance-Rules-Spreadsheet-debug.xlsx"
+    <copy file="../BPC-Remittance-Rules-Spreadsheet-${dateTime}.xlsx"
           preservelastmodified="false"
           tofile="${dir}/BPC-Remittance-Rules-Spreadsheet-${dateTime}.xlsx"/>
   </sequential>
