@@ -18,6 +18,7 @@
       <title>Executive summary</title>
       <para>This documents the use of demonstration validation artefacts that can be incorporated into one’s process of accepting ISO 20022 XML instances.</para>
       <para>This environment is made freely available with no constraints on use and no responsibility or warranty of use.</para>
+      <para>The GitHub repository for this work is at <ulink url="https://github.com/CraneSoftwrights/Validate-20022"/>. Please submit bug reports and feature requests by creating an issue at <ulink url="https://github.com/CraneSoftwrights/Validate-20022/issues"/>.</para>
     </legalnotice>
   </articleinfo>
   <section id="S-INTRODUCTION">
@@ -61,10 +62,9 @@
     <para>Not shown in the diagram are an XSLT stylesheet that transforms the XML output of the depicted XSLT transformation into a simple text file and a validation true/false result, the XSLT stylesheets that transform the ODF into Schematron, and the XSLT stylesheets that transform the Schematron
       into XSLT.</para>
   </section>
-  <section id="S-SCHEMAS">
-    <title>Schemas</title>
-    <para>In the <literal>iso/</literal> subdirectory the <literal>all-iso-20022.xsd</literal> schema imports the selection of ISO 20022 schemas, also found in the <literal>iso/</literal> subdirectory.</para>
-    <para>At this time two different schemas are involved in the one validation: <literal>remt.001.001.05.xsd</literal> and <literal>remt.002.001.02.xsd</literal>.</para>
+  <section id="S-SCHEMA">
+    <title>Schema</title>
+    <para>In the <literal>iso/</literal> subdirectory is the <literal>remt.001.001.05.xsd</literal> schema from ISO 20022.</para>
   </section>
   <section id="S-DATA-INTEGRITY-CONSTRAINT-CHECKING">
     <title>Data integrity constraint checking</title>

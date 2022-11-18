@@ -1,38 +1,32 @@
 # Validate-20022
 
-An environment with which to validate XML documents against a couple of ISO-20022 XSD schemas:
+An environment with which to validate XML documents against the ISO-20022 XSD schema:
 
 - `remt.001.001.05.xsd`
-- `remt.002.001.02.xsd`
 
-... using a single importing schema named:
+... and a Schematron file reflecting the BPC data integrity rules for `remt.001.001.05` data:
 
-- `all-iso-20022.xsd`
-
-... and a placebo Schematron file that is prepared here without constraints and is ready to be modified for one's own needs:
-
-- `all-iso-20022.rules.sch`
+- `BPC-Remittance-Rules.sch`
 
 ## Release packages
 
-Download and unzip the latest release named:
+Download and unzip the latest development release named:
 
 - `Validate-20022-tools-CCMMYYDD-HHMMSSz.zip`
 
 This creates:
 
 - `archive-only-not-in-final-distribution/` directory with information about building this environment
-- `Validate-20022-CCMMYYDD-HHMMSSz.zip` distribution package
+- `Validate-20022-CCMMYYDD-HHMMSSz.zip` distribution package for end-users
 
 The distribution package is what is made available to end users who want to run the environment. When this ZIP file is unzipped, one finds:
 
 - `readme-validation-artefacts.html` with a description of the packages and all invocation information found below
 - `release.txt` and `release-CCMMYYDD-HHMMSSz.txt` used to distinguish this package from other packages
-- `sch/` directory of Schematron resources
-- `val/` directory of validation invocations
+- `bpc/` directory of Schematron resources and rules spreadsheets
+- `val/` directory of validation invocations and open-source software
 - `xml/` directory of sample XML files
-- `xsd/` directory of W3C Schema files
-- `xsl/` directory of XSLT implementations of Schematron resources
+- `iso/` directory of W3C Schema files
 
 ## Complete documentation
 
@@ -63,3 +57,5 @@ To validate a test document of one’s own that is found in your local computer 
 When there is a schema error of any kind, the script creates a file named by adding the “.error.txt” suffix to the input file name and records the error information in that file.
 
 When there is a Schematron data integrity error, the script also creates a file named by adding the “.svrl.xml” suffix to the input file name and records the Schematron SVRL record information in that file.
+
+Please consult the HTML readme file for a complete description of how to use the distribution package.
