@@ -17,7 +17,7 @@ if exist "%~1.error.txt" del "%~1.error.txt"
 if exist "%~1.svrl.xml" del "%~1.svrl.xml"
 
 echo ===== Phase 1: XSD schema validation =====
-call "%~dp0w3cschema.bat" "%~dp0../iso/all-iso-20022.xsd" "%~1" > "%~1.error.txt"
+call "%~dp0w3cschema.bat" "%~dp0../iso/remt.001.001.05.xsd" "%~1" > "%~1.error.txt"
 set errorRet=%errorlevel%
 if %errorRet% neq 0 goto :error
 echo No schema validation errors.

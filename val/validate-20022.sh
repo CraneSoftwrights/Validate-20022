@@ -19,7 +19,7 @@ if [ -f "$1.error.txt" ]; then rm "$1.error.txt" ; fi
 if [ -f "$1.svrl.xml" ];  then rm "$1.svrl.xml"  ; fi
 
 echo ===== Phase 1: XSD schema validation =====
-sh "$DP0/w3cschema.sh" "$DP0/../iso/all-iso-20022.xsd" "$1" 2>&1 >"$1.error.txt"
+sh "$DP0/w3cschema.sh" "$DP0/../iso/remt.001.001.05.xsd" "$1" 2>&1 >"$1.error.txt"
 errorRet=$?
 
 if [ $errorRet -eq 0 ]
