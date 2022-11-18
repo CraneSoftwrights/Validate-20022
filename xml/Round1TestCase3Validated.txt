@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:remt.001.001.05">
+     <RmtAdvc>
+          <GrpHdr>
+               <MsgId>20221003Example3</MsgId>
+               <CreDtTm>2022-10-01T08:00:00</CreDtTm>
+               <InitgPty>
+                    <Id>
+                         <OrgId>
+                              <Othr>
+                                   <Id>345678</Id>
+                                   <SchmeNm>
+                                        <Prtry>Exchange Framework</Prtry>
+                                   </SchmeNm>
+                              </Othr>
+                         </OrgId>
+                    </Id>
+               </InitgPty>
+               <MsgRcpt>
+                    <Id>
+                         <OrgId>
+                              <Othr>
+                                   <Id>876543</Id>
+                                   <SchmeNm>
+                                        <Prtry>Exchange Framework</Prtry>
+                                   </SchmeNm>
+                              </Othr>
+                         </OrgId>
+                    </Id>
+               </MsgRcpt>
+          </GrpHdr>
+          <RmtInf>
+               <RmtId>Linking ID Example 3</RmtId>
+               <Strd>
+                    <RfrdDocInf>
+                         <Tp>
+                              <CdOrPrtry>
+                                   <Cd>CINV</Cd>
+                              </CdOrPrtry>
+                         </Tp>
+                         <Nb>3044635068</Nb>
+                         <RltdDt>2021-04-13</RltdDt>
+                    </RfrdDocInf>
+                    <RfrdDocInf>
+                         <Tp>
+                              <CdOrPrtry>
+                                   <Cd>PUOR</Cd>
+                              </CdOrPrtry>
+                         </Tp>
+                         <Nb>PO 365428</Nb>
+                         <RltdDt>2021-04-03</RltdDt>
+                    </RfrdDocInf>
+                    <RfrdDocAmt>
+                         <DuePyblAmt Ccy="USD">957.50</DuePyblAmt>
+                         <RmtdAmt Ccy="EUR">813.88</RmtdAmt>
+                    </RfrdDocAmt>
+                    <AddtlRmtInf>Conversion rate .85</AddtlRmtInf>
+               </Strd>
+               <Strd>
+                    <RfrdDocInf>
+                         <Tp>
+                              <CdOrPrtry>
+                                   <Cd>CINV</Cd>
+                              </CdOrPrtry>
+                         </Tp>
+                         <Nb>3044651383</Nb>
+                         <RltdDt>2021-04-13</RltdDt>
+                    </RfrdDocInf>
+                    <RfrdDocInf>
+                         <Tp>
+                              <CdOrPrtry>
+                                   <Cd>PUOR</Cd>
+                              </CdOrPrtry>
+                         </Tp>
+                         <Nb>PO 369734</Nb>
+                         <RltdDt>2021-04-10</RltdDt>
+                    </RfrdDocInf>
+                    <RfrdDocAmt>
+                         <DuePyblAmt Ccy="USD">5747.50</DuePyblAmt>
+                         <RmtdAmt Ccy="EUR">4885.38</RmtdAmt>
+                    </RfrdDocAmt>
+                    <AddtlRmtInf>Conversion rate .85</AddtlRmtInf>
+               </Strd>
+               <Strd>
+                    <RfrdDocInf>
+                         <Tp>
+                              <CdOrPrtry>
+                                   <Cd>CINV</Cd>
+                              </CdOrPrtry>
+                         </Tp>
+                         <Nb>3045087056</Nb>
+                         <RltdDt>2021-04-13</RltdDt>
+                    </RfrdDocInf>
+                    <RfrdDocInf>
+                         <Tp>
+                              <CdOrPrtry>
+                                   <Cd>PUOR</Cd>
+                              </CdOrPrtry>
+                         </Tp>
+                         <Nb>PO 365947</Nb>
+                         <RltdDt>2021-04-05</RltdDt>
+                    </RfrdDocInf>
+                    <RfrdDocAmt>
+                         <DuePyblAmt Ccy="USD">48891.15</DuePyblAmt>
+                         <AdjstmntAmtAndRsn>
+                              <Amt Ccy="USD">1401.00</Amt>
+                              <CdtDbtInd>DBIT</CdtDbtInd>
+                              <Rsn>D7</Rsn>
+                              <AddtlInf>Additional information supporting reason D7</AddtlInf>
+                         </AdjstmntAmtAndRsn>
+                         <RmtdAmt Ccy="EUR">41557.48</RmtdAmt>
+                    </RfrdDocAmt>
+                    <AddtlRmtInf>Conversion rate .85</AddtlRmtInf>
+               </Strd>
+               <OrgnlPmtInf>
+                    <Refs>
+                         <EndToEndId>Linking ID Example 3</EndToEndId>
+                    </Refs>
+                    <Amt>
+                         <InstdAmt Ccy="EUR">47256.73</InstdAmt>
+                    </Amt>
+                    <ReqdExctnDt>
+                        <Dt>2021-05-12</Dt>
+                    </ReqdExctnDt>
+                    <Dbtr>
+                         <Nm>Payer Test3</Nm>
+                    </Dbtr>
+                    <Cdtr>
+                         <Nm>Payee Test3</Nm>
+                    </Cdtr>
+               </OrgnlPmtInf>
+          </RmtInf>
+     </RmtAdvc>
+</Document>

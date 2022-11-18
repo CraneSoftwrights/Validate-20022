@@ -1,11 +1,10 @@
 @echo off
-call validate-20022.bat "..\xml\Round1 Test Case 1.xml"
-call validate-20022.bat "..\xml\Round1 Test Case 2.xml"
-call validate-20022.bat "..\xml\Round1 Test Case 3.xml"
-call validate-20022.bat "..\xml\Round1 Test Case 4.xml"
-call validate-20022.bat "..\xml\Round1 Test Case 5.xml"
-call validate-20022.bat "..\xml\Round1 Test Case 6.xml"
-call validate-20022.bat "..\xml\Round1 Test Case 7.xml"
+call validate-20022.bat "..\xml\Round1TestCase1Validated.txt"
+call validate-20022.bat "..\xml\Round1TestCase2Validated.txt"
+call validate-20022.bat "..\xml\Round1TestCase3Validated.txt"
+call validate-20022.bat "..\xml\Round1TestCase4Validated.txt"
+call validate-20022.bat "..\xml\Round1TestCase5Validated.txt"
+call validate-20022.bat "..\xml\Round1TestCase6Validated.txt"
 
 echo.
 echo.

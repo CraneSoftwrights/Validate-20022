@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:remt.001.001.05">
+     <RmtAdvc>
+          <GrpHdr>
+               <MsgId>20221004Example4</MsgId>
+               <CreDtTm>2022-10-01T08:00:00</CreDtTm>
+               <InitgPty>
+                    <Id>
+                         <OrgId>
+                              <Othr>
+                                   <Id>456789</Id>
+                                   <SchmeNm>
+                                        <Prtry>Exchange Framework</Prtry>
+                                   </SchmeNm>
+                              </Othr>
+                         </OrgId>
+                    </Id>
+               </InitgPty>
+               <MsgRcpt>
+                    <Id>
+                         <OrgId>
+                              <Othr>
+                                   <Id>987654</Id>
+                                   <SchmeNm>
+                                        <Prtry>Exchange Framework</Prtry>
+                                   </SchmeNm>
+                              </Othr>
+                         </OrgId>
+                    </Id>
+               </MsgRcpt>
+          </GrpHdr>
+          <RmtInf>
+               <RmtId>Linking ID Example 4</RmtId>
+               <Strd>
+                    <RfrdDocInf>
+                         <Tp>
+                              <CdOrPrtry>
+                                   <Cd>CINV</Cd>
+                              </CdOrPrtry>
+                         </Tp>
+                         <Nb>3045094939</Nb>
+                         <RltdDt>2021-04-12</RltdDt>
+                    </RfrdDocInf>
+                    <RfrdDocAmt>
+                         <DuePyblAmt Ccy="USD">8834.53</DuePyblAmt>
+                         <AdjstmntAmtAndRsn>
+                              <Amt Ccy="USD">1031.40</Amt>
+                              <CdtDbtInd>DBIT</CdtDbtInd>
+                              <Rsn>I3</Rsn>
+                         </AdjstmntAmtAndRsn>
+                         <RmtdAmt Ccy="USD">7803.13</RmtdAmt>
+                    </RfrdDocAmt>
+                    <CdtrRefInf>
+                         <Tp>
+                              <CdOrPrtry>
+                                   <Cd>PUOR</Cd>
+                              </CdOrPrtry>
+                         </Tp>
+                         <Ref>40041782</Ref>
+                    </CdtrRefInf>
+                    <Invcr>
+                         <Nm>Invoicer company 1</Nm>
+                         <Id>
+                              <OrgId>
+                                   <Othr>
+                                        <Id>12345</Id>
+                                        <SchmeNm>
+                                             <Cd>CUST</Cd>
+                                        </SchmeNm>
+                                   </Othr>
+                              </OrgId>
+                         </Id>
+                    </Invcr>
+               </Strd>
+               <Strd>
+                    <RfrdDocInf>
+                         <Tp>
+                              <CdOrPrtry>
+                                   <Cd>CINV</Cd>
+                              </CdOrPrtry>
+                         </Tp>
+                         <Nb>3045096218</Nb>
+                         <RltdDt>2021-04-12</RltdDt>
+                    </RfrdDocInf>
+                    <RfrdDocAmt>
+                         <DuePyblAmt Ccy="USD">1660.85</DuePyblAmt>
+                         <RmtdAmt Ccy="USD">1660.85</RmtdAmt>
+                    </RfrdDocAmt>
+                    <CdtrRefInf>
+                         <Tp>
+                              <CdOrPrtry>
+                                   <Cd>PUOR</Cd>
+                              </CdOrPrtry>
+                         </Tp>
+                         <Ref>40041789</Ref>
+                    </CdtrRefInf>
+                    <Invcr>
+                         <Nm>Invoicer company 1</Nm>
+                         <Id>
+                              <OrgId>
+                                   <Othr>
+                                        <Id>12345</Id>
+                                        <SchmeNm>
+                                             <Cd>CUST</Cd>
+                                        </SchmeNm>
+                                   </Othr>
+                              </OrgId>
+                         </Id>
+                    </Invcr>
+               </Strd>
+               <Strd>
+                    <RfrdDocInf>
+                         <Tp>
+                              <CdOrPrtry>
+                                   <Cd>CINV</Cd>
+                              </CdOrPrtry>
+                         </Tp>
+                         <Nb>3045098838</Nb>
+                         <RltdDt>2021-04-12</RltdDt>
+                    </RfrdDocInf>
+                    <RfrdDocAmt>
+                         <DuePyblAmt Ccy="USD">18729.31</DuePyblAmt>
+                         <RmtdAmt Ccy="USD">18729.31</RmtdAmt>
+                    </RfrdDocAmt>
+                    <CdtrRefInf>
+                         <Tp>
+                              <CdOrPrtry>
+                                   <Cd>PUOR</Cd>
+                              </CdOrPrtry>
+                         </Tp>
+                         <Ref>40041799</Ref>
+                    </CdtrRefInf>
+                    <Invcr>
+                         <Nm>Invoicer company 2</Nm>
+                         <Id>
+                              <OrgId>
+                                   <Othr>
+                                        <Id>67890</Id>
+                                        <SchmeNm>
+                                             <Cd>CUST</Cd>
+                                        </SchmeNm>
+                                   </Othr>
+                              </OrgId>
+                         </Id>
+                    </Invcr>
+               </Strd>
+               <Strd>
+                    <RfrdDocInf>
+                         <Tp>
+                              <CdOrPrtry>
+                                   <Cd>CREN</Cd>
+                              </CdOrPrtry>
+                         </Tp>
+                         <Nb>80723999</Nb>
+                         <RltdDt>2021-02-23</RltdDt>
+                    </RfrdDocInf>
+                    <RfrdDocAmt>
+                         <CdtNoteAmt Ccy="USD">10040.00</CdtNoteAmt>
+                         <RmtdAmt Ccy="USD">10040.00</RmtdAmt> 
+		    </RfrdDocAmt>
+                    <CdtrRefInf>
+                         <Tp>
+                              <CdOrPrtry>
+                                   <Cd>PUOR</Cd>
+                              </CdOrPrtry>
+                         </Tp>
+                         <Ref>2224377</Ref>
+                    </CdtrRefInf>
+                    <Invcr>
+                         <Nm>Invoicer company 2</Nm>
+                         <Id>
+                              <OrgId>
+                                   <Othr>
+                                        <Id>67890</Id>
+                                        <SchmeNm>
+                                             <Cd>CUST</Cd>
+                                        </SchmeNm>
+                                   </Othr>
+                              </OrgId>
+                         </Id>
+                    </Invcr>
+               </Strd>
+               <OrgnlPmtInf>
+                    <Refs>
+                         <EndToEndId>Linking ID Example 4</EndToEndId>
+                    </Refs>
+                    <Amt>
+                         <InstdAmt Ccy="USD">18153.29</InstdAmt>
+                    </Amt>
+		    <ReqdExctnDt>	
+			 <Dt>2021-05-10</Dt>
+		    </ReqdExctnDt>	
+                    <Dbtr>
+                         <Nm>Invoicee company</Nm>
+                    </Dbtr>
+                    <Cdtr>
+                         <Nm>Invoicer parent</Nm>
+                    </Cdtr>
+               </OrgnlPmtInf>
+          </RmtInf>
+     </RmtAdvc>
+</Document>
