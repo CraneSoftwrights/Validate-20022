@@ -5,6 +5,7 @@ call validate-20022.bat "..\xml\Round1TestCase3Validated.txt"
 call validate-20022.bat "..\xml\Round1TestCase4Validated.txt"
 call validate-20022.bat "..\xml\Round1TestCase5Validated.txt"
 call validate-20022.bat "..\xml\Round1TestCase6Validated.txt"
+call validate-20022.bat "..\xml\Round1TestCase7Validated.txt"
 
 echo.
 echo.
