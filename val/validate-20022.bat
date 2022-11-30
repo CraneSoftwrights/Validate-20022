@@ -1,4 +1,4 @@
-rem @echo off
+@echo off
 rem Default BPC 2 two-phase validation
 rem
 rem Syntax: validate customization-id document-type ubl-xml-file
